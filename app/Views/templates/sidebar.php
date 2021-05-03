@@ -139,7 +139,7 @@
 
     <!-- Nav Item - LOGOUT-->
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('auth/logout'); ?>">
+        <a class="nav-link" href="<?= base_url('logout'); ?>">
             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
             <span>Logout</span>
         </a>
