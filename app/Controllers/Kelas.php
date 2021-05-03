@@ -62,7 +62,7 @@ class Kelas extends BaseController
         $data['active_pengaturan'] = '';
         /*----- activation ---------*/
 
-        return view('t_siswa/ssiswa', $data);
+        return view('t_siswa/Ssiswa', $data);
     }
 
     /* ---------- Tutup kelas fitur guru --------------- */
