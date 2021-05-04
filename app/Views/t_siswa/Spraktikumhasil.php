@@ -18,15 +18,18 @@
                         <th rowspan="2">No</th>
                         <th rowspan="2">Tanggal</th>
                         <th rowspan="2">Praktikum</th>
-                        <th colspan="2">Pre Test</th>
-                        <th colspan="3">Post Test</th>
-                        <th rowspan="2">Experiment</th>
+                        <th colspan="3">Pre Games</th>
+                        <th colspan="3">Post Games</th>
+                        <th colspan="2">Experiment Games</th>
                     </tr>
                     <tr>
-                        <th>Waktu Games</th>
-                        <th>Status</th>
-                        <th>Waktu Pengerjaan</th>
+                        <th>Waktu</th>
                         <th>Jml Kesalahan</th>
+                        <th>Status</th>
+                        <th>Waktu</th>
+                        <th>Jml Kesalahan</th>
+                        <th>Status</th>
+                        <th>Waktu</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -35,14 +38,16 @@
                     foreach ($tampildata as $prak) { ?>
                         <tr>
                             <td><?php echo $no++; ?></td>
-                            <td><?php echo $prak->create_date; ?></td>
+                            <td><?php echo $prak->update_date; ?></td>
                             <td><?php echo $prak->judul; ?></td>
                             <td><?php echo $prak->pre_waktu_games; ?></td>
+                            <td><?php echo $prak->pre_fault_counter; ?></td>
                             <td><?php echo $prak->pre_status; ?></td>
                             <td><?php echo $prak->post_waktu_pengerjaan; ?></td>
                             <td><?php echo $prak->post_fault_counter; ?></td>
                             <td><?php echo $prak->post_status; ?></td>
-                            <td><?php echo $prak->create_date; ?></td>
+                            <td><?php echo $prak->expe_waktu_pengerjaan; ?></td>
+                            <td><?php echo $prak->expe_status; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -52,16 +57,19 @@
                         <th rowspan="2">No</th>
                         <th rowspan="2">Tanggal</th>
                         <th rowspan="2">Praktikum</th>
-                        <th colspan="2">Pre Test</th>
-                        <th colspan="3">Post Test</th>
-                        <th rowspan="2">Experiment</th>
-                    </tr>
-                    <tr>
-                        <th>Waktu Games</th>
-                        <th>Status</th>
-                        <th>Waktu Pengerjaan</th>
+                        <th>Waktu</th>
                         <th>Jml Kesalahan</th>
                         <th>Status</th>
+                        <th>Waktu</th>
+                        <th>Jml Kesalahan</th>
+                        <th>Status</th>
+                        <th>Waktu</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Pre Games</th>
+                        <th colspan="3">Post Games</th>
+                        <th colspan="2">Experiment Games</th>
                     </tr>
                 </tfoot>
             </table>
