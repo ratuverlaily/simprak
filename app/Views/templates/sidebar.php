@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fab fa-accusoft"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">E-Learning<br /><small>Praktikum SMK</small></div>
+        <div class="sidebar-brand-text mx-3">E-SIMPRAG<br /></div>
     </a>
 
     <!-- Divider Guru-->
