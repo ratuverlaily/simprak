@@ -20,8 +20,8 @@
                                         <b>
                                             <h5>LOGIN</h5>
                                         </b>
-                                        <small>SIMPRAK (SIMULASI PRAKTIKUM ONLINE)</small><br />
-                                        <small>KOPETENSI LISTRIK DASAR SMK</small>
+                                        <small>E-SIMPRAG (SIMULASI PRAKTIKUM DAN GAMES)</small><br />
+                                        <small>KOPETENSI BIDANG LISTRIK DASAR SMK</small>
                                     </p>
                                 </div>
                                 <!-- Success validasi -->
