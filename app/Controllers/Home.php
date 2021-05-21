@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\Mauth;
+use App\Models\Mposting;
 use App\Models\Musers;
 
 class Home extends BaseController
@@ -11,6 +11,7 @@ class Home extends BaseController
     public function index()
     {
         $this->Musers = new Musers();
+        $this->Mposting = new Mposting();
         $datauser = $this->Musers->get_identitas();
 
         if (session()->get('level') == 1) {
@@ -22,7 +23,13 @@ class Home extends BaseController
                 $data['kelas'] = $datauser->nama;
                 session()->set($data);
 
-                return view('home');
+                $stus = ['info', 'praktikum'];
+                $getpost = [
+                    'posting' => $this->Mposting->join('tbl_user', 'tbl_user.id = posting_status.id_user')->where('kode_kelas', session()->get('kode_kelas'))->whereIn('status', $stus)->orderBy('posting_status.id_posting', 'DESC')->paginate(5, 'posting'),
+                    'pager' =>  $this->Mposting->join('tbl_user', 'tbl_user.id = posting_status.id_user')->pager,
+                ];
+
+                return view('home', $getpost);
             }
         } else {
             if ($datauser->status_regis == 0) {
@@ -33,7 +40,13 @@ class Home extends BaseController
                 $data['kelas'] = $datauserkelasaktif->nama;
                 session()->set($data);
 
-                return view('home');
+                $stus = ['info', 'praktikum'];
+                $getpost = [
+                    'posting' => $this->Mposting->join('tbl_user', 'tbl_user.id = posting_status.id_user')->where('kode_kelas', session()->get('kode_kelas'))->whereIn('status', $stus)->orderBy('posting_status.id_posting', 'DESC')->paginate(5, 'posting'),
+                    'pager' =>  $this->Mposting->join('tbl_user', 'tbl_user.id = posting_status.id_user')->pager,
+                ];
+
+                return view('home', $getpost);
             }
         }
     }
