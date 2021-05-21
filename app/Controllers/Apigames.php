@@ -80,7 +80,7 @@ class Apigames extends ResourceController
                     'post_waktu_pengerjaan' => $post_waktu_pengerjaan,
                     'expe_status' => $expe_status,
                     'expe_waktu_pengerjaan' => $expe_waktu_pengerjaan,
-                    'create_date' => date('d M Y H:i:s'),
+                    'update_date' => date('d M Y H:i:s'),
                 );
                 $db->table('praktikum_getvalue')->insert($data);
             }
