@@ -17,6 +17,43 @@ class Identitas extends BaseController
     {
     }
 
+    public function viewPassword()
+    {
+        $hasil['users'] = $this->Musers->get_identitas();
+
+        return view('t_siswa/identitas_siswa/registrasi_ubah_password', $hasil);
+    }
+
+    public function updatePassword()
+    {
+        $validated = $this->validate([
+            'password'    => [
+                'rules'  => 'required|min_length[10]',
+                'errors' => [
+                    'required' => 'Input Password Min 10 Karakter Terdiri Dari Angka Dan huruf !.'
+                ]
+            ],
+            'repassword'    => [
+                'rules'  => 'required|matches[password]',
+                'errors' => [
+                    'required' => 'Passwor tidak sama !.'
+                ]
+            ],
+        ]);
+
+        if ($validated) {
+            $request = service('request');
+            $password = $request->getPost('password');
+            $this->Musers->ubahpassword($password);
+
+            session()->setFlashdata('success', 'Password berhasil di update !');
+            return redirect()->to(base_url('identitas/password'));
+        } else {
+            session()->setFlashdata('error', 'Password yang anda input tidak sama, Ulangi Kembali !');
+            return redirect()->to(base_url('identitas/password'));
+        }
+    }
+
     /* --------------- REGISTRASI SISWA ----------------------*/
 
     public function viewphoto()
@@ -71,10 +108,14 @@ class Identitas extends BaseController
                     $getreg = $this->Musers->get_status_reg();
 
                     // Store file in public/uploads/ folder
+                    $getstatusImg = $this->Musers->get_status_image();
+
                     $file->move('uploads', $newName);
 
                     if ($getreg) {
-                        unlink('uploads/' . session()->get('user_image'));
+                        if (!empty($getstatusImg->user_image) && $getstatusImg->user_image != $newName) {
+                            unlink('uploads/' . session()->get('user_image'));
+                        }
                     }
 
                     //insert and udate data
