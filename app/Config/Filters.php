@@ -49,6 +49,8 @@ class Filters extends BaseConfig
 				'identitas', 'identitas/*',
 				'praktikum', 'praktikum/*',
 				'modul', 'modul/*',
+				'murid', 'kelas/*',
+				'dashboard', 'dashboard/*',
 				//'resefulapiweb', 'resefulapiweb/*',
 			]],
 			'toolbar',
