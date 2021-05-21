@@ -49,29 +49,31 @@ class Apilogin extends ResourceController
                 $cekstatusprak = $this->Model_api_web->get_statusgames_praktikum($id_user, $id_praktikum);
                 if ($cekstatusprak) {
                     if ($cekstatusprak->game_selesai == 1) {
-                        $error['status'] = "0";
+                        $error['status'] = "4";
                         $error['massage'] = "Maaf tidak bisa login kembali karena status anda sudah selesai pada praktikum ini !";
                         return $this->respond($error);
                     } else {
                         $getdata['username'] = $cek['username'];
                         $getdata['id_user'] = $id_user;
                         $getdata['id_praktikum'] = $id_praktikum;
+                        $getdata['id_games'] = $getidprak->id_games;
+                        $getdata['judul_games'] = $getidprak->judul;
                         $getdata['kode_kelas'] = $cekstatusprak->kode_kelas;
                         $getdata['status'] = "login berhasil";
                         return $this->respond($getdata);
                     }
                 } else {
-                    $error['status'] = "0";
+                    $error['status'] = "3";
                     $error['error'] = "Maaf tidak bisa masuk, Silahkan cek kode praktikum anda pada sistem !";
                     return $this->respond($error);
                 }
             } else {
-                $error['status'] = "0";
+                $error['status'] = "2";
                 $error['error'] = "Kode Praktikum Salah !";
                 return $this->respond($error);
             }
         } else {
-            $error['status'] = "0";
+            $error['status'] = "1";
             $error['error'] = "Maaf Username dan Password Anda Salah !";
             return $this->respond($error);
         }
