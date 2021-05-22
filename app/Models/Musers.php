@@ -19,7 +19,15 @@ class Musers extends Model
     {
         $id = session()->get('id');
 
-        $query = $this->db->query('select * from status_reg where id_user =' . $id);
+        $query = $this->db->query('SELECT * FROM status_reg WHERE id_user =' . $id);
+        return $query->getRow();
+    }
+
+    public function get_status_image()
+    {
+        $id = session()->get('id');
+
+        $query = $this->db->query('SELECT * FROM tbl_user WHERE id =' . $id);
         return $query->getRow();
     }
 
@@ -89,6 +97,113 @@ class Musers extends Model
     {
         $id = session()->get('id');
         $query = $this->db->query('select * from tbl_kelas_user a INNER JOIN kelas b ON a.kode_kelas = b.kode where kelas_aktif=1 AND a.id_user =' . $id);
+        return $query->getRow();
+    }
+
+    public function ubahpassword($password)
+    {
+        $id = session()->get('id');
+        $this->db->table('tbl_user')->update(array('password' => $password), array('id' => $id));
+    }
+
+    /*==================== POSTING =============================*/
+    public function addposting($data)
+    {
+        $this->db->table("posting_status")->insert($data);
+    }
+
+    public function tampilposting()
+    {
+        $kode_kelas = session()->get('kode_kelas');
+        $query = $this->db->query("SELECT a.status as status, count(b.id_user) as jml_komentar, a.judul as judul, c.username as username, a.update_date as update_date, a.id_posting as id_posting FROM `posting_status` a LEFT JOIN komentar b ON a.id_posting = b.id_posting LEFT JOIN tbl_user c ON a.id_user=c.id where  a.kode_kelas ='" . $kode_kelas . "' group by a.id_posting");
+        return $query->getResult();
+    }
+
+    public function komentarpost($data)
+    {
+        $this->db->table("komentar")->insert($data);
+    }
+
+    public function getposting($id_posting)
+    {
+        $kode_kelas = session()->get('kode_kelas');
+        $query = $this->db->query("SELECT * FROM `posting_status` a INNER JOIN tbl_user b ON a.id_user=b.id WHERE id_posting = " . $id_posting . " AND kode_kelas='" . $kode_kelas . "'");
+        return $query->getRow();
+    }
+
+    public function getkomentar($id_posting)
+    {
+        $query = $this->db->query("SELECT * FROM `komentar` a INNER JOIN tbl_user b ON a.id_user=b.id WHERE id_posting = " . $id_posting);
+        return $query->getResult();
+    }
+
+    public function getjmlkomentar($id)
+    {
+        $query = $this->db->query("SELECT count(id_komentar) as jumlah FROM `komentar` WHERE id_posting = " . $id);
+        return $query->getRow();
+    }
+
+    public function getfileposting($id_posting)
+    {
+        $query = $this->db->query("SELECT * FROM `posting_status` WHERE id_posting = " . $id_posting);
+        return $query->getRow();
+    }
+
+    public function getkomentarbyid($id)
+    {
+        $query = $this->db->query("SELECT * FROM `komentar` WHERE id_posting = " . $id);
+        return $query->getResult();
+    }
+
+    public function deletekomentar($id)
+    {
+        $this->db->table('posting_status')->delete(array('id_posting' => $id));
+    }
+
+    public function deleteKomentarOrang($id)
+    {
+        $this->db->table('komentar')->delete(array('id_komentar' => $id));
+    }
+
+    public function getkelaUserbyIdGuru()
+    {
+        $id = session()->get('id');
+        $query = $this->db->query("SELECT * FROM `tbl_kelas_user` WHERE id_user = " . $id);
+        return $query->getResult();
+    }
+
+    public function getJumlahSiswaDikelas($wherein)
+    {
+        $id = session()->get('id');
+        $query = $this->db->query("SELECT count(b.id_user) as jumlah_siswa, c.nama FROM `tbl_user` a LEFT JOIN tbl_kelas_user b ON a.id=b.id_user LEFT JOIN kelas c ON b.kode_kelas=c.kode WHERE level=1 AND b." . $wherein . " group by b.kode_kelas");
+        return $query->getResult();
+    }
+
+    function rand_color()
+    {
+        $chars = 'ABCDEF0123456789';
+        $color = '#';
+        for ($i = 0; $i < 6; $i++) {
+            $color .= $chars[rand(0, strlen($chars) - 1)];
+        }
+        return $color;
+    }
+
+    public function getKomentarPosting($id_posting)
+    {
+        $query = $this->db->query("SELECT * FROM `komentar` WHERE id_posting=" . $id_posting);
+        return $query->getResult();
+    }
+
+    public function hapusdataposting($id_posting)
+    {
+        $this->db->table('posting_status')->delete(array('id_posting' => $id_posting));
+    }
+
+    public function get_myfile_user($id)
+    {
+        //$id_user = session()->get('id');
+        $query = $this->db->query("SELECT * FROM posting_status where id_posting =" . $id . " AND status = 'info' ");
         return $query->getRow();
     }
 }
