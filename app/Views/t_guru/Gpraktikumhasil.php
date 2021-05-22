@@ -11,18 +11,22 @@
             <b>PENILAIAN PRAKTIKUM SISWA KELAS <?= session()->get('kelas'); ?></b>
         </div>
         <div class="card-body">
-            Halaman : <br /><br />
+
+            <div class="mx-auto">
+                <?= $pager->links('tampildata', 'praktikumnilai_pagination'); ?>
+            </div>
+
             <div class="row">
                 <?php foreach ($tampildata as $nilaiprak) { ?>
                     <div class="col-sm-3">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="card-title"><b><?= $nilaiprak->judul; ?></b></h6>
-                                <p class="card-text">Link : <a href="">Lihat Detail</a> <br />Selesai : <?= $nilai[$nilaiprak->id_praktikum]; ?> orang<br />Belum Terkumpul : <?= $sisa[$nilaiprak->id_praktikum]; ?> orang<br /><br />
-                                    <small> Posting : <?= $nilaiprak->tgl_publis; ?> <br />Batas Pengumpulan : <?= $nilaiprak->tgl_publis; ?></small>
+                                <h6 class="card-title"><b><?= $nilaiprak['judul']; ?></b></h6>
+                                <p class="card-text">Link : <a href="">Lihat Detail</a> <br />Selesai : <?= $nilai[$nilaiprak['id_praktikum']]; ?> orang<br />Belum Terkumpul : <?= $sisa[$nilaiprak['id_praktikum']]; ?> orang<br /><br />
+                                    <small> Posting : <?= $nilaiprak['tgl_publis']; ?> <br />Batas Pengumpulan : <?= $nilaiprak['tgl_publis']; ?></small>
                                 </p>
 
-                                <a href="<?= base_url() ?>/praktikum/penilaian/detail/<?php echo $nilaiprak->id_praktikum ?>" class="btn btn-primary">Rekap Nilai Siswa</a>
+                                <a href="<?= base_url() ?>/praktikum/penilaian/detail/<?php echo $nilaiprak['id_praktikum'] ?>" class="btn btn-primary">Rekap Nilai Siswa</a>
                             </div>
                         </div>
                     </div>
