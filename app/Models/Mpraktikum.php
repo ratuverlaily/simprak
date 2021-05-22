@@ -49,8 +49,16 @@ class Mpraktikum extends Model
     {
         $id_user = session()->get('id');
         $kode_kelas = session()->get('kode_kelas');
-        $query = $this->db->query("SELECT a.fullname as fullname, b.pre_waktu_games as waktu_pretest, b.pre_fault_counter as pre_fault_counter, b.pre_status as pre_status, b.post_waktu_pengerjaan as post_waktu_pengerjaan, b.post_fault_counter as post_fault_counter, b.post_status as post_status, b.expe_waktu_pengerjaan as expe_waktu_pengerjaan FROM `tbl_user` a INNER JOIN praktikum_getvalue b ON a.id=b.id_user INNER JOIN praktikum c ON b.id_praktikum = c.id_praktikum INNER JOIN tbl_kelas_user d ON a.id=d.id_user WHERE c.id_user='" . $id_user . "' AND d.kode_kelas='" . $kode_kelas . "' AND c.id_praktikum='" . $id_praktikum . "'");
+        $query = $this->db->query("SELECT a.fullname as fullname, b.pre_waktu_games as waktu_pretest, b.pre_fault_counter as pre_fault_counter, b.pre_status as pre_status, b.post_waktu_pengerjaan as post_waktu_pengerjaan, b.post_fault_counter as post_fault_counter, b.post_status as post_status, b.expe_waktu_pengerjaan as expe_waktu_pengerjaan, b.expe_status as expe_status FROM `tbl_user` a INNER JOIN praktikum_getvalue b ON a.id=b.id_user INNER JOIN praktikum c ON b.id_praktikum = c.id_praktikum INNER JOIN tbl_kelas_user d ON a.id=d.id_user WHERE c.id_user='" . $id_user . "' AND d.kode_kelas='" . $kode_kelas . "' AND c.id_praktikum='" . $id_praktikum . "'");
         return $query->getResult();
+    }
+
+    public function datadetailPraktikum($id_praktikum)
+    {
+        $id_user = session()->get('id');
+        $kode_kelas = session()->get('kode_kelas');
+        $query = $this->db->query("SELECT * FROM `praktikum` a INNER JOIN praktikum_dikelas b ON a.id_praktikum = b.id_praktikum WHERE a.id_user = " . $id_user . " AND b.id_praktikum = " . $id_praktikum . " AND kode_kelas ='" . $kode_kelas . "'");
+        return $query->getRow();
     }
 
     public function JumlahPesertaPraktikum($id_praktikum)
@@ -76,7 +84,7 @@ class Mpraktikum extends Model
 
     public function getLinkGames()
     {
-        $query = $this->db->query("select a.judul as judul, b.judul as modul, a.id_games as id_games from praktikum_games a INNER JOIN modul b ON a.id_modul = b.id_modul");
+        $query = $this->db->query("select a.judul as judul, b.judul as modul,b.link as link, a.id_games as id_games from praktikum_games a INNER JOIN modul b ON a.id_modul = b.id_modul");
         return $query->getResult();
     }
 
@@ -130,5 +138,33 @@ class Mpraktikum extends Model
     public function insert_status_games($data)
     {
         $this->db->table('praktikum_status_games')->insert($data);
+    }
+
+    // dasboard
+
+    public function getgrafikvalue()
+    {
+        $kode_kelas = session()->get('kode_kelas');
+        $query = $this->db->query("SELECT b.id_praktikum, a.judul as judul, sum(b.pre_status) as pre_status, sum(b.post_status) as post_status, sum(b.expe_status) as 	expe_status FROM praktikum a INNER JOIN praktikum_dikelas c ON a.id_praktikum = c.id_praktikum INNER JOIN praktikum_getvalue b ON a.id_praktikum = b.id_praktikum  WHERE c.kode_kelas = '" . $kode_kelas . "' group by a.id_praktikum");
+        return $query->getResult();
+    }
+
+    public function getKodePraktikumdikelas($id_games, $arrayKelas)
+    {
+        $query = $this->db->query("SELECT * FROM praktikum_dikelas a INNER JOIN praktikum b ON a.id_praktikum = b.id_praktikum INNER JOIN kelas c ON a.kode_kelas = c.kode WHERE kode_kelas IN (" . $arrayKelas . ") AND b.id_games = " . $id_games);
+        return $query->getResult();
+    }
+
+    /* delete Praktikum */
+    public function getjmlKelasPraktikum($id_praktikum)
+    {
+        $query = $this->db->query("SELECT * FROM  praktikum_dikelas  WHERE id_praktikum = " . $id_praktikum);
+        return $query->getResult();
+    }
+
+    public function getpraktikummodul($id_praktikum)
+    {
+        $query = $this->db->query("SELECT * FROM praktikum a INNER JOIN praktikum_games b ON a.id_games = b.id_games INNER JOIN modul c ON b.id_modul = c.id_modul  WHERE a.id_praktikum = " . $id_praktikum);
+        return $query->getRow();
     }
 }
