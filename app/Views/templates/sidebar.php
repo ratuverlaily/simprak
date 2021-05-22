@@ -2,11 +2,15 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fab fa-accusoft"></i>
+        <div class="sidebar-brand-icon ">
+            <i class="fas fa-school"></i>
+            <!-- <i class="fab fa-accusoft"></i> -->
         </div>
         <div class="sidebar-brand-text mx-3">E-SIMPRAG<br /></div>
     </a>
+
+    <hr class="sidebar-divider">
+    <div class="sidebar-brand-text mx-3 text-white text-center"><small>APLIKASI SIMULASI <br /> PRAKTIKUM DAN GAMES</small></div>
 
     <!-- Divider Guru-->
     <hr class="sidebar-divider my-0">
@@ -17,6 +21,11 @@
 
     <!-- Divider Guru-->
     <hr class="sidebar-divider my-0">
+
+    <?php
+    $request = service('request');
+    $statusUri = $request->uri->getSegment(1);
+    ?>
 
     <?php if (session()->get('level') == 1) { ?>
 
@@ -29,7 +38,13 @@
         </div>
 
         <!-- Nav Item - Nilai Praktikum-->
-        <li class="nav-item">
+
+        <li class="nav-item <?php if ($statusUri == "praktikum") {
+                                $statusnilai = $request->uri->getSegment(2);
+                                if ($statusnilai == "nilai") {
+                                    echo 'active';
+                                }
+                            } ?>">
             <a class="nav-link" href="<?= base_url('praktikum/nilai'); ?>">
                 <i class="fas fa-star"></i>
                 <span>Hasil Praktikum</span>
@@ -37,7 +52,9 @@
         </li>
 
         <!-- Nav Item - Nilai Praktikum-->
-        <li class="nav-item">
+        <li class="nav-item <?php if ($statusUri == "kelas") {
+                                echo 'active';
+                            } ?>">
             <a class="nav-link" href="<?= base_url('kelas'); ?>">
                 <i class="fas fa-school"></i>
                 <span>Daftar Kelas</span>
@@ -45,7 +62,9 @@
         </li>
 
         <!-- Nav Item - Nilai Praktikum-->
-        <li class="nav-item">
+        <li class="nav-item <?php if ($statusUri == "sekolah") {
+                                echo 'active';
+                            } ?>">
             <a class="nav-link" href="<?= base_url('sekolah'); ?>">
                 <i class="fas fa-school"></i>
                 <span>Daftar Sekolah</span>
@@ -53,7 +72,9 @@
         </li>
 
         <!-- Nav Item - Identitas Siswa-->
-        <li class="nav-item active">
+        <li class="nav-item <?php if ($statusUri == "identitas") {
+                                echo 'active';
+                            } ?>">
             <a class="nav-link" href="<?= base_url('identitas/photo'); ?>">
                 <i class="fas fa-cog"></i>
                 <span>Pengaturan Data Siswa</span>
@@ -61,8 +82,10 @@
         </li>
 
         <!-- Nav Item - Daftar siswa-->
-        <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('kelas/siswa'); ?>">
+        <li class="nav-item <?php if ($statusUri == "murid") {
+                                echo 'active';
+                            } ?>">
+            <a class="nav-link" href="<?= base_url('murid'); ?>">
                 <i class="fas fa-list"></i>
                 <span>Daftar siswa</span>
             </a>
@@ -72,8 +95,23 @@
 
 
     <?php if (session()->get('level') == 2) { ?>
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item <?php if ($statusUri == "dashboard") {
+                                echo 'active';
+                            } ?>">
+            <a class="nav-link" href="<?= base_url('dashboard'); ?>">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+
         <!-- Nav Item - Nilai Praktikum-->
-        <li class="nav-item">
+        <li class="nav-item <?php if ($statusUri == "praktikum") {
+                                $statusnilai = $request->uri->getSegment(3);
+                                if ($statusnilai == "nilai") {
+                                    echo 'active';
+                                }
+                            } ?>">
             <a class="nav-link" href="<?= base_url('praktikum/guru/nilai'); ?>">
                 <i class="fas fa-star"></i>
                 <span>Hasil Praktikum</span>
@@ -81,7 +119,9 @@
         </li>
 
         <!-- Nav Item - Nilai Praktikum-->
-        <li class="nav-item">
+        <li class="nav-item <?php if ($statusUri == "kelas") {
+                                echo 'active';
+                            } ?>">
             <a class="nav-link" href="<?= base_url('kelas'); ?>">
                 <i class="fas fa-school"></i>
                 <span>Aktivasi Kelas</span>
@@ -89,7 +129,9 @@
         </li>
 
         <!-- Nav Item - Nilai Praktikum-->
-        <li class="nav-item">
+        <li class="nav-item <?php if ($statusUri == "sekolah") {
+                                echo 'active';
+                            } ?>">
             <a class="nav-link" href="<?= base_url('sekolah'); ?>">
                 <i class="fas fa-school"></i>
                 <span>Daftar Sekolah</span>
@@ -97,7 +139,9 @@
         </li>
 
         <!-- Nav Item - Identitas Siswa-->
-        <li class="nav-item active">
+        <li class="nav-item <?php if ($statusUri == "identitas") {
+                                echo 'active';
+                            } ?>">
             <a class="nav-link" href="<?= base_url('identitas/photo'); ?>">
                 <i class="fas fa-cog"></i>
                 <span>Pengaturan Data Guru</span>
@@ -105,8 +149,10 @@
         </li>
 
         <!-- Nav Item - Daftar siswa-->
-        <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('kelas/siswa'); ?>">
+        <li class="nav-item <?php if ($statusUri == "murid") {
+                                echo 'active';
+                            } ?>">
+            <a class="nav-link" href="<?= base_url('murid'); ?>">
                 <i class="fas fa-list"></i>
                 <span>Daftar siswa</span>
             </a>
@@ -117,20 +163,20 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
+    <!-- Heading
     <div class="sidebar-heading">
         FITUR CHAT
     </div>
 
-    <!-- Nav Item - CHAT-->
+    Nav Item - CHAT
     <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-envelope"></i>
             <span>Chat</span>
         </a>
-    </li>
+    </li> 
 
-    <hr class="sidebar-divider">
+    <hr class="sidebar-divider">-->
 
     <!-- Heading -->
     <div class="sidebar-heading">
