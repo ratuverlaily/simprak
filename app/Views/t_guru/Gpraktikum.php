@@ -7,12 +7,12 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/datepacker/bootstrap-datepicker.css">
 
 <div class="container-fluid">
-    <div class="card o-hidden shadow-lg my-5">
+    <div class="alert alert-primary o-hidden shadow-lg" role="alert">
+        <h6 align="center"><b>DAFTAR PRAKTIKUM</b></h6>
+    </div>
+
+    <div class="card o-hidden shadow-lg my-2">
         <div class="card-body">
-            <br />
-            <div class="alert alert-primary" role="alert">
-                <h6 align="center"><b>DAFTAR PRAKTIKUM</b></h6>
-            </div>
             <?php if (session()->get('warning')) : ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong><?= session()->getFlashdata('warning') ?></strong>
@@ -39,53 +39,64 @@
                     </button>
                 </div>
             <?php endif; ?>
-            <br />
 
             <div class="d-flex bd-highlight mb-3">
                 <div class="p-2 bd-highlight">
                     <button class="btn btn-primary" onclick="add_praktikum()"><i class="fas fa-plus-square"></i> Tambah Praktikum</button>
                 </div>
                 <div class="ml-auto p-2 bd-highlight">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Halaman 1
-                    </button>
-                    <div class="btn-group">
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Action</button>
-                            <button class="dropdown-item" type="button">Another action</button>
-                            <button class="dropdown-item" type="button">Something else here</button>
-                        </div>
-                    </div>
+                    <?= $pager->links('praktikum', 'praktikum_pagination'); ?>
                 </div>
             </div>
 
             <?php $no = 1;
+            date_default_timezone_set('Asia/Jakarta');
+
             foreach ($praktikums as $praktikum) {
-                $waktu = $praktikum->tgl_publis . " " . $praktikum->waktu_publis;
+                $waktu = $praktikum['tgl_publis'] . " " . $praktikum['waktu_publis'];
+                $waktu_sistem = $waktu;
+                $wakru_sekarang = date('Y-m-d H:i:s');
 
+                $waktu_batas = $praktikum['tgl_batas'] . " " . $praktikum['waktu_batas'];
+
+                $getGames[$praktikum['id_games']] = $praktikum['id_games'];
+
+                if ($waktu_batas >= $wakru_sekarang) {
+                    $bgcolor = "";
+                    $status = "";
+                } else {
+                    $bgcolor = "alert-danger";
+                    $status = "EXPIRED";
+                }
+
+                if ($waktu_sistem <= $wakru_sekarang) {
             ?>
-                <div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <div class='row'>
-                            <div class='col-sm-2'>
-                                <img class="img-profile rounded-circle w-25 h-200" src="<?= base_url() ?>/uploads/<?= session()->get('user_image'); ?>">
-                            </div>
-                            <div class='col-sm-9'>
-                                <div class="row">
-                                    <div class='col-sm-3'><small> Posting : <?php echo $praktikum->tgl_publis . " " . $praktikum->waktu_publis; ?></small></div>
-                                    <div class='col-sm-6'></div>
-                                    <div class='col-sm-3'><small> Pengumpulan : <?php echo $praktikum->tgl_batas; ?></small></div>
-                                </div>
-                            </div>
-
-                            <div class='col-sm-12'><br /><b><i class="fa fa-tasks"></i>&nbsp;&nbsp;<?php echo $praktikum->judul; ?></b><br />
-                                <hr />
-                                <?php echo $praktikum->komentar; ?>
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <div class="alert-secondary my-3">
+                                <p align="center" class="p-2">
+                                    <i class="fas fa-plug fa-2x"></i>
+                                </p>
                             </div>
                         </div>
-                    </button>
-                </div><br />
-            <?php } ?>
+                        <div class="col-sm-11 ">
+                            <button type="button" class="list-group-item list-group-item-action" onclick="location.href='<?= base_url('praktikum/guru/detail'); ?>/<?php echo $praktikum['id_praktikum'] ?>'">
+                                <div class="row <?php echo  $bgcolor; ?>">
+                                    <div class="col-sm-10 p-2">
+                                        <b><small><?php echo $praktikum['username'] ?>, <?php echo $praktikum['tgl_publis']; ?></small></b><br />
+                                        <b><?php echo $praktikum['judul']; ?></b><br />
+                                    </div>
+                                    <div class="col-sm-2 p-3">
+                                        <h5 class="text-center"> <i class="fas fa-engine-warning"></i>
+                                            <?php echo $status ?></h5>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div><br />
+            <?php
+                }
+            } ?>
 
         </div>
     </div>
@@ -126,8 +137,27 @@
                                             <textarea name="komentar" class="form-control" id="exampleFormControlTextarea1" placeholder="Komentar" rows="10"></textarea>
                                         </div>
                                     </div>
+                                    <small>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="text-danger">&nbsp;&nbsp;&nbsp;Keterangan :<br />
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Symbol ( / ) => Enter<br />
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Symbol ( & ) => Nambah Space<br />
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Symbol ( # kelimat #/ ) => bold<br />
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="text-danger"><br />
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Symbol ( * kelimat */ ) => underline<br />
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Symbol ( ^ kelimat ^/ ) => italic<br />
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Symbol ( [ kelimat ] ) => Rata Kanan Kiri<br />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </small>
                                 </div>
                             </div>
+                            <br />
                         </div>
 
                         <!-- input kelas -->
@@ -139,10 +169,16 @@
                                     </div>
                                     <div class="row">
                                         <?php $no = 1;
-                                        foreach ($kelass as $kelas) { ?>
+                                        foreach ($kelass as $kelas) {
+                                            if ($kelas->kode == session()->get('kode_kelas')) {
+                                                $ceked = "checked";
+                                            } else {
+                                                $ceked = "";
+                                            }
+                                        ?>
                                             <div class="col-4">
                                                 <div class="form-check">
-                                                    <input name="kelas[]" class="form-check-input" type="checkbox" value="<?php echo $kelas->kode ?>" id="flexCheckDefault">
+                                                    <input name="kelas[]" class="form-check-input" type="checkbox" value="<?php echo $kelas->kode ?>" id="flexCheckDefault" <?php echo $ceked; ?>>
                                                     <label class="form-check-label" for="flexCheckDefault">
                                                         <?php echo $kelas->nama; ?>
                                                     </label>
@@ -154,25 +190,7 @@
                                 </div>
                             </div>
                             <br />
-                            <!-- input tanggal batas -->
-                            <div class="card o-hidden shadow-lg ">
-                                <div class="card-body text-secondary">
-                                    <div class="alert alert-primary" role="alert">
-                                        <h6 class="card-title text-center"><b>BATAS PENGUMPULAN</b></h6>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6 dates">
-                                            <label>Tanggal</label>
-                                            <input name="tanggal_batas" type="text" class="form-control" id="usr1" name="event_date" placeholder="YYYY-MM-DD" autocomplete="off">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label>Waktu</label>
-                                            <input name="waktu_batas" type="time" class="form-control" placeholder="8.30" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
+
                             <!-- tanggal posting -->
                             <div class="card o-hidden shadow-lg ">
                                 <div class="card-body text-secondary">
@@ -192,6 +210,26 @@
                                 </div>
                             </div>
                             <br />
+
+                            <!-- input tanggal batas -->
+                            <div class="card o-hidden shadow-lg ">
+                                <div class="card-body text-secondary">
+                                    <div class="alert alert-primary" role="alert">
+                                        <h6 class="card-title text-center"><b>BATAS PENGUMPULAN</b></h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 dates">
+                                            <label>Tanggal</label>
+                                            <input name="tanggal_batas" type="text" class="form-control" id="usr1" name="event_date" placeholder="YYYY-MM-DD" autocomplete="off">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Waktu</label>
+                                            <input name="waktu_batas" type="time" class="form-control" placeholder="8.30" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
                         </div>
 
                         <!-- input praktikum -->
@@ -204,14 +242,22 @@
                                     <div class="row">
 
                                         <?php $no = 1;
-                                        foreach ($games as $game) { ?>
+                                        foreach ($games as $game) {
+                                            if (!empty($getGames[$game->id_games])) {
+
+                                                $disable = "disabled";
+                                            } else {
+                                                $disable = "";
+                                            }
+
+                                        ?>
                                             <div class="col-4">
                                                 <div class="form-check">
-                                                    <input name="games" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="<?php echo $game->id_games ?>">
+                                                    <input name="games" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="<?php echo $game->id_games ?>" <?php echo $disable; ?>>
                                                     <label class="form-check-label" for="exampleRadios2">
                                                         <b><?php echo $game->judul; ?></b><br />
                                                         <small><?php echo $game->modul; ?></small><br />
-                                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                                        <a href="<?php echo base_url() . "/file/" . $game->link ?>" target="_blank">View Modul</a>
                                                         <hr />
                                                     </label>
                                                 </div>
@@ -304,6 +350,11 @@
                 alert('Error adding / update data');
             }
         });
+    }
+
+    function view_pdf_praktikum() {
+        $('#form')[0].reset(); // reset form on modals
+        $('#modal_praktikum_form').modal('show');
     }
 
     function delete_modul(id) {
