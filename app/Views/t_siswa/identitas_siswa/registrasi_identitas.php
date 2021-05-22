@@ -13,38 +13,20 @@
                     <a class="nav-link" href="<?= base_url() ?>/identitas/photo">Photo</a>
                 </li>
 
-                <?php if ($photo == 0) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Identitas</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url() ?>/identitas/identitas">Identitas</a>
-                    </li>
-                <?php } ?>
-
-                <?php if ($identitas == 0) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="coba" href="#">Kelas</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/kelas">Kelas</a>
-                    </li>
-                <?php } ?>
-
-                <?php if ($kelas == 0) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sekolah</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/sekolah">Sekolah</a>
-                    </li>
-                <?php } ?>
+                <li class="nav-item">
+                    <a class="nav-link active" href="<?= base_url() ?>/identitas/identitas">Identitas</a>
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/ubahpassword">Ubah Password</a>
+                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/kelas">Kelas</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/sekolah">Sekolah</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/password">Ubah Password</a>
                 </li>
             </ul>
             <br />
