@@ -18,16 +18,18 @@
                     <tr>
                         <th rowspan="2">No</th>
                         <th rowspan="2">Nama</th>
-                        <th colspan="3">Pre Test</th>
-                        <th colspan="3">Post Test</th>
-                        <th rowspan="2">Experiment</th>
+                        <th colspan="3">Pre Games</th>
+                        <th colspan="3">Post Games</th>
+                        <th colspan="2">Experiment Games</th>
                     </tr>
                     <tr>
-                        <th>Waktu Games</th>
+                        <th>Waktu</th>
                         <th>Jml Kesalahan</th>
                         <th>Status</th>
-                        <th>Waktu Pengerjaan</th>
+                        <th>Waktu</th>
                         <th>Jml Kesalahan</th>
+                        <th>Status</th>
+                        <th>Waktu</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -45,6 +47,7 @@
                             <td><?= $detail->post_fault_counter; ?></td>
                             <td><?= $detail->post_status; ?></td>
                             <td><?= $detail->expe_waktu_pengerjaan; ?></td>
+                            <td><?= $detail->expe_status; ?></td>
                         </tr>
                     <?php $i++;
                     } ?>
@@ -53,17 +56,20 @@
                     <tr>
                         <th rowspan="2">No</th>
                         <th rowspan="2">Nama</th>
-                        <th colspan="3">Pre Test</th>
-                        <th colspan="3">Post Test</th>
-                        <th rowspan="2">Experiment</th>
+                        <th>Waktu</th>
+                        <th>Jml Kesalahan</th>
+                        <th>Status</th>
+                        <th>Waktu</th>
+                        <th>Jml Kesalahan</th>
+                        <th>Status</th>
+                        <th>Waktu</th>
+                        <th>Status</th>
+
                     </tr>
                     <tr>
-                        <th>Waktu Games</th>
-                        <th>Jml Kesalahan</th>
-                        <th>Status</th>
-                        <th>Waktu Pengerjaan</th>
-                        <th>Jml Kesalahan</th>
-                        <th>Status</th>
+                        <th colspan="3">Pre Test</th>
+                        <th colspan="3">Post Test</th>
+                        <th colspan="2">Experiment</th>
                     </tr>
                 </tfoot>
             </table>
