@@ -5,7 +5,12 @@
 <script src="<?= base_url() ?>/js/jquery.dataTables.min.js"></script>
 
 <div class="container-fluid">
-    <div class="col-sm-12">
+
+    <div class="alert alert-primary shadow-lg my-3" role="alert">
+        <h6 align="center"><b>DAFTAR MODUL</b></h6>
+    </div>
+
+    <div class="card shadow-lg my-1">
         <div class="card m-b-30">
             <div class="card-body">
 
@@ -14,15 +19,13 @@
                         <a class="nav-link active" href="<?php echo base_url('modul/siswa'); ?>">Modul Praktikum</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Files</a>
+                        <a class="nav-link" href="<?php echo base_url('modul/file/siswa'); ?>">Files</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('modul/myfile/siswa'); ?>">My File</a>
                     </li>
                 </ul>
 
-                <br />
-                <div class="alert alert-primary" role="alert">
-                    <h6 align="center"><b>DAFTAR MODUL</b></h6>
-                </div>
-                <br />
                 <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr>
