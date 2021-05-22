@@ -59,7 +59,8 @@ class Apilogin extends ResourceController
                         $getdata['id_games'] = $getidprak->id_games;
                         $getdata['judul_games'] = $getidprak->judul;
                         $getdata['kode_kelas'] = $cekstatusprak->kode_kelas;
-                        $getdata['status'] = "login berhasil";
+                        $getdata['status'] = "5";
+                        $getdata['massage'] = "login berhasil";
                         return $this->respond($getdata);
                     }
                 } else {
