@@ -1,21 +1,37 @@
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+<!-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4 static-top shadow">
+
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
 
+    <?php
+    $request = service('request');
+    $statusUri = $request->uri->getSegment(1);
+    ?>
+
     <?php if (session()->get('level') == 2) { ?>
         <!-- Topbar Search -->
-        <div class="mr-auto ml-md-3 my-2 my-md-0 mw-100">
+        <div class="mr-auto ml-md-3 my-2 my-md-0 mw-200">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item <?php if ($statusUri == "home") {
+                                        echo 'active';
+                                    } ?>">
                     <a class="nav-link" href="/home/">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php if ($statusUri == "praktikum") {
+                                        $statusnilai = $request->uri->getSegment(3);
+                                        if ($statusnilai == "list") {
+                                            echo 'active';
+                                        }
+                                    } ?> ?>">
                     <a class="nav-link" href="<?= base_url() ?>/praktikum/guru/list/">Praktikum</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php if ($statusUri == "modul") {
+                                        echo 'active';
+                                    } ?>">
                     <a class="nav-link" href="<?= base_url() ?>/modul/guru">Modul</a>
                 </li>
             </ul>
@@ -24,15 +40,24 @@
 
     <?php if (session()->get('level') == 1) { ?>
         <!-- Topbar Search -->
-        <div class="mr-auto ml-md-3 my-2 my-md-0 mw-100">
+        <div class="mr-auto ml-md-3 my-2 my-md-0 mw-200">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item <?php if ($statusUri == "home") {
+                                        echo 'active';
+                                    } ?>">
                     <a class="nav-link" href="<?= base_url() ?>/home/">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php if ($statusUri == "praktikum") {
+                                        $statusnilai = $request->uri->getSegment(2);
+                                        if ($statusnilai == "siswa") {
+                                            echo 'active';
+                                        }
+                                    } ?>">
                     <a class="nav-link" href="<?= base_url() ?>/praktikum/siswa">Praktikum</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php if ($statusUri == "modul") {
+                                        echo 'active';
+                                    } ?>">
                     <a class="nav-link" href="<?= base_url() ?>/modul/siswa">Modul</a>
                 </li>
             </ul>
@@ -63,7 +88,7 @@
         </li>
 
         <!-- Nav Item - Alerts -->
-        <li class="nav-item dropdown no-arrow mx-1">
+        <li class="nav-item dropdown no-arrow mx-1 p-2">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
@@ -112,13 +137,13 @@
         </li>
 
         <!-- Nav Item - Messages -->
-        <li class="nav-item dropdown no-arrow mx-1">
+        <!-- <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
+                Counter - Messages
                 <span class="badge badge-danger badge-counter">7</span>
             </a>
-            <!-- Dropdown - Messages -->
+            Dropdown - Messages
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                     Message Center
@@ -169,23 +194,31 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
             </div>
-        </li>
+        </li> -->
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                    <?= session()->get('username'); ?><br />
-                    <?php if (session()->get('level') == 1) : ?>
-                        <b>( Siswa )</b>
-                    <?php endif; ?>
-                    <?php if (session()->get('level') == 2) : ?>
-                        <b>( Pengajar )</b>
-                    <?php endif; ?>
-                </span>
-                <img class="img-profile rounded-circle" src="<?= base_url() ?>/uploads/<?php echo session()->get('user_image') ?>" style="width:30px;">
+                <div class="d-flex bd-highlight">
+                    <div class="flex-fill bd-highlight">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                            <?= session()->get('username'); ?><br />
+                            <?php if (session()->get('level') == 1) : ?>
+                                <b>( Siswa )</b>
+                            <?php endif; ?>
+                            <?php if (session()->get('level') == 2) : ?>
+                                <b>( Pengajar )</b>
+                            <?php endif; ?>
+                        </span>
+                    </div>
+                    <div class="flex-fill bd-highlight">
+                        <div class="p-2">
+                            <img class="img-profile rounded-circle" src="<?= base_url() ?>/uploads/<?php echo session()->get('user_image') ?>" style="width:40px;height:40px">
+                        </div>
+                    </div>
+                </div>
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
