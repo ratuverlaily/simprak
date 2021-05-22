@@ -57,7 +57,7 @@ class Model_api_web extends Model
 
     public function praktikumid($kode_praktikum)
     {
-        $query = $this->db->query("SELECT * FROM praktikum WHERE kode_praktikum='" . $kode_praktikum . "'");
+        $query = $this->db->query("SELECT a.id_praktikum as id_praktikum, b.id_games as id_games, c.judul as judul FROM praktikum a INNER JOIN praktikum_games b ON a.id_games=b.id_games INNER JOIN modul c ON b.id_modul=c.id_modul WHERE a.kode_praktikum='" . $kode_praktikum . "'");
         return $query->getRow();
     }
 
