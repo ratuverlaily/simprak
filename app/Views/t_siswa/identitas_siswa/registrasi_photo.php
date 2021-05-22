@@ -15,38 +15,20 @@
                     <a class="nav-link active" href="<?= base_url() ?>/identitas/photo">Photo</a>
                 </li>
 
-                <?php if ($photo == 0) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Identitas</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url() ?>/identitas/identitas">Identitas</a>
-                    </li>
-                <?php } ?>
-
-                <?php if ($identitas == 0) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="coba" href="#">Kelas</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/kelas">Kelas</a>
-                    </li>
-                <?php } ?>
-
-                <?php if ($kelas == 0) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sekolah</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/sekolah">Sekolah</a>
-                    </li>
-                <?php } ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url() ?>/identitas/identitas">Identitas</a>
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/ubahpassword">Ubah Password</a>
+                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/kelas">Kelas</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/sekolah">Sekolah</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/password">Ubah Password</a>
                 </li>
             </ul>
             <br />
@@ -78,16 +60,23 @@
                 </div>
             <?php endif; ?>
 
-            <h6 align="center"><u><b>PHOTO</b></u></h6>
+            <div class="card w-50 mx-auto">
+                <div class="card-body">
+                    <div class="alert alert-danger text-center" role="alert">
+                        <h6 align="center"><b>PHOTO</b></h6>
+                    </div>
 
-            <p align="center"><small>Upload Photo Profil Anda</small><br /><small>Ukuran ( 3 x 4 )</small></p>
-            <div id="filepreview" class="displaynone">
-                <img src="<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>" class="rounded mx-auto d-block" width="300px" height="300px"><br><br>
+                    <p align="center"><small>Upload Photo Profil Anda</small><br /><small>Ukuran ( 3 x 4 )</small></p>
+                    <div id="filepreview" class="displaynone">
+                        <img src="<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>" class="rounded mx-auto d-block" width="300px" height="300px"><br><br>
+                    </div>
+                    <div class="d-flex justify-content-center bd-highlight">
+                        <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="add_photo()"><i class="fas fa-plus-square"></i> Uploa Photo</button></div>
+                        <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="location.href='<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>'"><i class="fa fa-eye" aria-hidden="true"></i> Lihat Detail</button></div>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-center bd-highlight">
-                <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="add_photo()"><i class="fas fa-plus-square"></i> Uploa Photo</button></div>
-                <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="location.href='<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>'"><i class="fa fa-eye" aria-hidden="true"></i> Lihat Detail</button></div>
-            </div>
+
             <div class="d-flex justify-content-between bd-highlight">
                 <div class="p-5 bd-highlight"></div>
                 <?php if ($photo == 1) { ?>
@@ -96,6 +85,7 @@
                     <div class="p-5 bd-highlight"><button type="button" class="btn btn-outline-info" onclick="location.href='#'"></i> Selanjutnya</button></div>
                 <?php } ?>
             </div>
+
         </div>
     </div>
 </div>
