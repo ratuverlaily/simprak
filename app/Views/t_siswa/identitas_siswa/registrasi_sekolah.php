@@ -12,39 +12,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url() ?>/identitas/photo">Photo</a>
                 </li>
-
-                <?php if ($photo == 0) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Identitas</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url() ?>/identitas/identitas">Identitas</a>
-                    </li>
-                <?php } ?>
-
-                <?php if ($identitas == 0) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="coba" href="#">Kelas</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/kelas">Kelas</a>
-                    </li>
-                <?php } ?>
-
-                <?php if ($kelas == 0) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Sekolah</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link active" id="coba" href="<?= base_url() ?>/identitas/sekolah">Sekolah</a>
-                    </li>
-                <?php } ?>
-
                 <li class="nav-item">
-                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/ubahpassword">Ubah Password</a>
+                    <a class="nav-link" href="<?= base_url() ?>/identitas/identitas">Identitas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/kelas">Kelas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" id="coba" href="<?= base_url() ?>/identitas/sekolah">Sekolah</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="coba" href="<?= base_url() ?>/identitas/password">Ubah Password</a>
                 </li>
             </ul>
             <br />
@@ -146,6 +124,7 @@
 
             <div class="d-flex justify-content-between bd-highlight">
                 <div class="p-5 bd-highlight"><button type="button" class="btn btn-outline-info" onclick="location.href='<?= base_url() ?>/identitas/kelas'"><i class="fas fa-backward"></i> Sebelumnya</button></div>
+                <div class="p-5 bd-highlight"><button type="button" class="btn btn-outline-info" onclick="location.href='<?= base_url() ?>/identitas/password'"><i class="fas fa-forward"></i> Selanjutnya</button></div>
             </div>
 
         </div>
