@@ -72,7 +72,9 @@ class Praktikum extends BaseController
 
     public function viewpdfpraktikum($id_praktikum)
     {
-        $data['getdata'] = $this->Mpraktikum->getpraktikummodul($id_praktikum);
+        $data['getdata'] = $this->Mpraktikum->getpraktikummodul(
+            $id_praktikum
+        );
 
         return view('t_siswa/SpdfFilePraktikum', $data);
     }
@@ -174,7 +176,12 @@ class Praktikum extends BaseController
 
             $db->table('praktikum')->delete(array('id_praktikum' => $id_praktikum));
 
-            $db->table('posting_status')->delete(array('kode_kelas' => session()->get('kode_kelas')));
+            $where = array(
+                'id_praktikum' => $id_praktikum,
+                'kode_kelas' => session()->get('kode_kelas'),
+            );
+
+            $db->table('posting_status')->delete($where);
 
             $db->transComplete();
         } else {
@@ -188,7 +195,12 @@ class Praktikum extends BaseController
 
             $db->table('praktikum')->delete(array('id_praktikum' => $id_praktikum));
 
-            $db->table('posting_status')->delete(array('kode_kelas' => session()->get('kode_kelas')));
+            $where = array(
+                'id_praktikum' => $id_praktikum,
+                'kode_kelas' => session()->get('kode_kelas'),
+            );
+
+            $db->table('posting_status')->delete($where);
 
             $db->transComplete();
         }
