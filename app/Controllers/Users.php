@@ -19,6 +19,141 @@ class Users extends BaseController
 
     /* --------------- REGISTRASI SISWA ----------------------*/
 
+    public function viewkomentarpdf($id)
+    {
+        $data['getfile'] = $this->Musers->getfileposting($id);
+        $data['id_praktikum'] = $id;
+        return view('t_guru/Gpdfkomentar', $data);
+    }
+
+    public function hapusPosting($id)
+    {
+        $getmyfile = $this->Mmodul->get_myfile_user($id);
+        if ($getmyfile) {
+            unlink('posting/' . $getmyfile->file);
+        }
+        $this->Musers->hapusdataposting($id);
+        session()->setFlashdata('success', 'File Anda Berhasil Di Hapus !');
+        return redirect()->to(base_url('home'));
+    }
+
+    public function postPosting()
+    {
+        $request = service('request');
+        $judul = $request->getPost('judul');
+        $komentar = $request->getPost('komentar');
+        $link_web = $request->getPost('link_web');
+        $link_youtube = $request->getPost('link_youtube');
+        $file = $request->getFile('file');
+
+        if (!empty($file)) {
+            $validated = $this->validate([
+                'file' => [
+                    'uploaded[file]',
+                    'mime_in[file,application/pdf,application/zip,application/msword,image/jpg,image/jpeg,image/gif,image/png]',
+                    'max_size[file,4096]',
+                ],
+            ]);
+
+            if ($validated) {
+                $newName = $file->getRandomName();
+
+                $file->move('posting', $newName);
+
+                $data = array(
+                    "id_user" => session()->get('id'),
+                    "kode_kelas" => session()->get('kode_kelas'),
+                    "judul" => $judul,
+                    "posting" => $komentar,
+                    "file" => $newName,
+                    "status" => 'info',
+                    "create_date" => date("Y-m-d h:i:s"),
+                    "update_date" => date("Y-m-d h:i:s"),
+                );
+
+                $this->Musers->addposting($data);
+                session()->setFlashdata('success', 'Posting berhasil di post !');
+                echo json_encode(array("status" => 1));
+            } else {
+                session()->setFlashdata('error', 'Mohon Maaf File Anda Tidak Sesuai !');
+                echo json_encode(array("status" => 1));
+            }
+        } else {
+            $data = array(
+                "id_user" => session()->get('id'),
+                "kode_kelas" => session()->get('kode_kelas'),
+                "judul" => $judul,
+                "posting" => $komentar,
+                "link_web" => $link_web,
+                "link_youtube" => $link_youtube,
+                "status" => 'info',
+                "create_date" => date("Y-m-d h:i:s"),
+                "update_date" => date("Y-m-d h:i:s"),
+            );
+
+            $this->Musers->addposting($data);
+            session()->setFlashdata('success', 'Posting berhasil di post !');
+            echo json_encode(array("status" => 1));
+        }
+    }
+
+    public function postKomentar($id)
+    {
+        $request = service('request');
+        $nama = "komentar_" . $id;
+        $komentar = $request->getPost($nama);
+
+        $data = array(
+            'id_user' => session()->get('id'),
+            'id_posting' => $id,
+            'komentar' => $komentar,
+            'tanggal' => date("Y-m-d h:i:s"),
+        );
+
+        $this->Musers->komentarpost($data);
+        session()->setFlashdata('success', 'Komentar Berhasil Ditambahkan !');
+        return redirect()->to(base_url('users/komentar/detail/' . $id));
+    }
+
+    public function viewkomentar($id)
+    {
+        echo "ksajdaksdaskdajsld :" . $id;
+    }
+
+    public function detailkomentar($id)
+    {
+        $data['posting'] = $this->Musers->getposting($id);
+        $data['komentar'] = $this->Musers->getkomentar($id);
+        $data['jml_komentar'] = $this->Musers->getjmlkomentar($id);
+
+        return view('Home_komentar', $data);
+    }
+
+    public function hapusKomentarOrang($id)
+    {
+        $data =  str_replace('_', '', $id);
+        $id_komentar = $data[0];
+        $id_posting = $data[1];
+
+        $getkoment = $this->Musers->deleteKomentarOrang($id_komentar);
+        session()->setFlashdata('success', 'Komentar Anda Berhasil Di Hapus !');
+        return redirect()->to(base_url('users/komentar/detail/' . $id_posting));
+    }
+
+    public function hapuskomentar($id)
+    {
+        $getkoment = $this->Musers->getkomentarbyid($id);
+        if (empty($getkoment)) {
+            $this->Musers->deletekomentar($id);
+            session()->setFlashdata('success', 'Postingan Anda Berhasil Di Hapus !');
+            return redirect()->to(base_url('home'));
+        } else {
+            session()->setFlashdata('error', 'Mohon Maaf Postingan Anda Tidak Bisa Di Hapus !');
+            return redirect()->to(base_url('home'));
+        }
+    }
+    /*----------------- REGISTRASI -----------------------*/
+
     public function viewphoto()
     {
         $getreg = $this->Musers->get_status_reg();
@@ -69,7 +204,10 @@ class Users extends BaseController
                     $file->move('uploads', $newName);
 
                     if ($getreg) {
-                        unlink('uploads/' . session()->get('user_image'));
+                        $getstatusImg = $this->Musers->get_status_image();
+                        if (!empty($getstatusImg->user_image) && $getstatusImg->user_image != $newName) {
+                            unlink('uploads/' . session()->get('user_image'));
+                        }
                     }
 
                     //insert and udate data
