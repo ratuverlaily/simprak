@@ -36,10 +36,13 @@ $routes->get('auth/login', 'Auth::index');
 $routes->add('logout', 'Auth::logout');
 $routes->add('auth/cek', 'Auth::ceklogin');
 $routes->get('auth/register', 'Auth::register');
+$routes->get('auth/forgot', 'Auth::view_forgot_password');
+$routes->post('auth/cek_password', 'Auth::cek_password_to_email');
 $routes->post('auth/register/save', 'Auth::save_register');
 
 
 $routes->group('users', function ($routes) {
+	$routes->get('notification', 'Users::getnotification');
 	$routes->get('photo', 'Users::viewphoto');
 	$routes->post('photo/add', 'Users::uploadphoto');
 	$routes->get('identitas', 'Users::viewidentitas');
@@ -117,6 +120,9 @@ $routes->group('identitas', function ($routes) {
 	$routes->post('identitas/add', 'Identitas::identitasupdate');
 	$routes->get('kelas', 'Identitas::viewkelas');
 	$routes->post('kelas/add', 'Identitas::addkelas');
+	$routes->get('kelas/guru/edit/(:num)', 'Identitas::editViewkelasguru/$1');
+	$routes->get('kelas/hapus/(:num)', 'Identitas::deleteKelas/$1');
+	$routes->post('simpankelas', 'Identitas::editkelasguru');
 	$routes->get('sekolah', 'Identitas::viewsekolah');
 	$routes->get('pass/ubah', 'Identitas::ubahpassword');
 	$routes->get('sekolah/edit', 'Users::editViewSekolahguru');
