@@ -206,4 +206,9 @@ class Musers extends Model
         $query = $this->db->query("SELECT * FROM posting_status where id_posting =" . $id . " AND status = 'info' ");
         return $query->getRow();
     }
+
+    public function deleteKelasGuru($where)
+    {
+        $this->db->table("kelas")->delete($where);
+    }
 }
