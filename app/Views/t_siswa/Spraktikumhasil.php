@@ -35,19 +35,33 @@
                 </thead>
                 <tbody>
                     <?php $no = 1;
-                    foreach ($tampildata as $prak) { ?>
+                    foreach ($tampildata as $prak) {
+                        $date = date_create($prak->update_date);
+                    ?>
                         <tr>
                             <td><?php echo $no++; ?></td>
-                            <td><?php echo $prak->update_date; ?></td>
+                            <td><?php echo  date_format($date, "d-m-Y H:i:s"); ?></td>
                             <td><?php echo $prak->judul; ?></td>
                             <td><?php echo $prak->pre_waktu_games; ?></td>
                             <td><?php echo $prak->pre_fault_counter; ?></td>
-                            <td><?php echo $prak->pre_status; ?></td>
+                            <td><?php if ($prak->pre_status == 1) {
+                                    echo "Berhasil";
+                                } else {
+                                    echo "Gagal";
+                                } ?></td>
                             <td><?php echo $prak->post_waktu_pengerjaan; ?></td>
                             <td><?php echo $prak->post_fault_counter; ?></td>
-                            <td><?php echo $prak->post_status; ?></td>
+                            <td><?php if ($prak->post_status == 1) {
+                                    echo "Berhasil";
+                                } else {
+                                    echo "Gagal";
+                                } ?></td>
                             <td><?php echo $prak->expe_waktu_pengerjaan; ?></td>
-                            <td><?php echo $prak->expe_status; ?></td>
+                            <td><?php if ($prak->expe_status == 1) {
+                                    echo "Berhasil";
+                                } else {
+                                    echo "Gagal";
+                                } ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
