@@ -32,17 +32,17 @@
                         <th rowspan="2">Waktu Pengerjaan</th>
                         <th rowspan="2">Nama</th>
                         <th colspan="3">Pre Games</th>
-                        <th colspan="3">Post Games</th>
                         <th colspan="2">Experiment Games</th>
+                        <th colspan="3">Post Games</th>
                     </tr>
                     <tr>
                         <th>Waktu</th>
                         <th>Jml Kesalahan</th>
                         <th>Status</th>
                         <th>Waktu</th>
-                        <th>Jml Kesalahan</th>
                         <th>Status</th>
                         <th>Waktu</th>
+                        <th>Jml Kesalahan</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -63,15 +63,15 @@
                                 } else {
                                     echo "<b>Gagal</b>";
                                 } ?></td>
-                            <td><?= $detail->post_waktu_pengerjaan; ?></td>
-                            <td><?= $detail->post_fault_counter; ?></td>
-                            <td><?php if ($detail->post_status == 1) {
+                            <td><?= $detail->expe_waktu_pengerjaan; ?></td>
+                            <td><?php if ($detail->expe_status == 1) {
                                     echo "<b>Berhasil</b>";
                                 } else {
                                     echo "<b>Gagal</b>";
                                 } ?></td>
-                            <td><?= $detail->expe_waktu_pengerjaan; ?></td>
-                            <td><?php if ($detail->expe_status == 1) {
+                            <td><?= $detail->post_waktu_pengerjaan; ?></td>
+                            <td><?= $detail->post_fault_counter; ?></td>
+                            <td><?php if ($detail->post_status == 1) {
                                     echo "<b>Berhasil</b>";
                                 } else {
                                     echo "<b>Gagal</b>";
@@ -89,16 +89,15 @@
                         <th>Jml Kesalahan</th>
                         <th>Status</th>
                         <th>Waktu</th>
-                        <th>Jml Kesalahan</th>
                         <th>Status</th>
                         <th>Waktu</th>
+                        <th>Jml Kesalahan</th>
                         <th>Status</th>
-
                     </tr>
                     <tr>
                         <th colspan="3">Pre Test</th>
-                        <th colspan="3">Post Test</th>
                         <th colspan="2">Experiment</th>
+                        <th colspan="3">Post Test</th>
                     </tr>
                 </tfoot>
             </table>
