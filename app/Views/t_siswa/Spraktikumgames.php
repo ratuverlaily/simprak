@@ -53,7 +53,9 @@
                     </div>
                 </div>
             </div>
-            <br /><br /><br />
+            <br />
+            <div class="p-2 bd-highlight"><button type="button" class="btn btn-outline-info" onclick="location.href='<?= base_url() ?>/praktikum/detail/<?php echo $id_praktikum ?>'"><i class="fas fa-backward"></i> Kembali</button></div>
+            <br /><br />
 
 
         </div>
