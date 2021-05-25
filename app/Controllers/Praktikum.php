@@ -46,6 +46,7 @@ class Praktikum extends BaseController
 
         $datapraktikum = $this->Mpraktikum->getKodePraktikum($id_praktikum);
         $data['kode_praktikum'] =  $datapraktikum->kode_praktikum;
+        $data['id_praktikum'] = $id_praktikum;
 
         return view('t_siswa/Spraktikumgames', $data);
     }
@@ -65,9 +66,29 @@ class Praktikum extends BaseController
 
     public function getpraktikumkelas()
     {
-        $data['praktikums'] = $this->Mpraktikum->getpraktikumkelas();
+        $where = [
+            'kode_kelas' => session()->get('kode_kelas'),
+        ];
+        $prak = $this->Mpraktikumguru->join('praktikum_dikelas', 'praktikum_dikelas.id_praktikum = praktikum.id_praktikum', 'INNER');
+        $prak = $prak->join('tbl_user', 'tbl_user.id=praktikum.id_user', 'INNER');
+        $prak = $prak->where($where);
+        $prak = $prak->orderBy('praktikum.id_praktikum', 'DESC');
+
+
+        $data = [
+            'praktikums' => $prak->paginate(5, 'praktikum'),
+            'pager' => $prak->pager,
+        ];
+
+
+        $data['kelass'] = $this->Mpraktikum->getKelasByUser();
+        $data['games'] = $this->Mpraktikum->getLinkGames();
 
         return view('t_siswa/Spraktikum', $data);
+
+        /*$data['praktikums'] = $this->Mpraktikum->getpraktikumkelas();
+
+        return view('t_siswa/Spraktikum', $data);*/
     }
 
     public function viewpdfpraktikum($id_praktikum)
@@ -131,7 +152,9 @@ class Praktikum extends BaseController
 
     public function viewNilaiGuruPraktikumDetail($id)
     {
+        $data['praktikum'] = $this->Mpraktikum->getdataPraktikum($id);
         $data['tampildata'] = $this->Mpraktikum->getPraktikumGuruDetail($id);
+
         return view('t_guru/Gpraktikumdetail', $data);
     }
 
