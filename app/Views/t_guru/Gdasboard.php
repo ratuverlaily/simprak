@@ -72,7 +72,7 @@
             <div class="row">
 
                 <!-- Content Column -->
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-4 mb-4">
                     <!-- Project Card Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-8 mb-4">
                     <!-- Project Card Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -133,39 +133,44 @@
             <div class="row">
                 <!-- Content Column -->
                 <?php foreach ($getdatapraktikum as $getprak) {
-                    $status_post = round(($getprak->post_status / $jml_siswa) * 100);
-                    $status_pre = round(($getprak->pre_status / $jml_siswa) * 100);
-                    $status_expe = round(($getprak->expe_status / $jml_siswa) * 100);
+                    if ($jml_siswa == 0) {
+                        echo "<p class='text-danger p-2' align='center'>Mohon Maaf Grafik Tidak Dapat Di Tampilkan Karena Siswa Belum Ada Yang Daftar Praktikum !</p>";
+                    } else {
+                        $status_post = round(($getprak->post_status / $jml_siswa) * 100);
+                        $status_pre = round(($getprak->pre_status / $jml_siswa) * 100);
+                        $status_expe = round(($getprak->expe_status / $jml_siswa) * 100);
                 ?>
 
-                    <div class="col-lg-3 mb-4">
-                        <!-- Project Card Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <small><b><?php echo  $getprak->judul ?></b></small>
+                        <div class="col-lg-3 mb-4">
+                            <!-- Project Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <small><b><?php echo  $getprak->judul ?></b></small>
+                                </div>
+
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold">Games Experiment<span class="float-right"><?php echo  $status_expe ?>%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="background-color:<?php echo $warna_expe ?>; width: <?php echo $status_expe ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" max="20%"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">Games Pre Test<span class="float-right"><?php echo $status_pre ?>%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="background-color:<?php echo $warna_pre ?>; width: <?php echo $status_pre ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" max="20%"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">Games Pos Test<span class="float-right"><?php echo $status_post ?>%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="background-color:<?php echo $warna_post ?>; width: <?php echo $status_post ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" max="20%"></div>
+                                    </div>
+                                </div>
+
                             </div>
-
-                            <div class="card-body">
-                                <h4 class="small font-weight-bold">Games Experiment<span class="float-right"><?php echo  $status_expe ?>%</span></h4>
-                                <div class="progress mb-4">
-                                    <div class="progress-bar" role="progressbar" style="background-color:<?php echo $warna_expe ?>; width: <?php echo $status_expe ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" max="20%"></div>
-                                </div>
-
-                                <h4 class="small font-weight-bold">Games Pre Test<span class="float-right"><?php echo $status_pre ?>%</span></h4>
-                                <div class="progress mb-4">
-                                    <div class="progress-bar" role="progressbar" style="background-color:<?php echo $warna_pre ?>; width: <?php echo $status_pre ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" max="20%"></div>
-                                </div>
-
-                                <h4 class="small font-weight-bold">Games Pos Test<span class="float-right"><?php echo $status_post ?>%</span></h4>
-                                <div class="progress mb-4">
-                                    <div class="progress-bar" role="progressbar" style="background-color:<?php echo $warna_post ?>; width: <?php echo $status_post ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" max="20%"></div>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
 
-                <?php } ?>
+                <?php
+                    }
+                } ?>
 
             </div>
         </div>
