@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-4 col-form-label">jenis Kelamin</label>
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                                 <div class="col-sm-8">
                                     <input type="text" name="jenis_kelamin" class="form-control" value="<?= $jenis_kelamin; ?>" disabled>
                                 </div>
@@ -125,13 +125,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-4">Twetter</label>
+                                <label for="inputPassword" class="col-sm-4">Twitter</label>
                                 <div class="col-sm-8">
                                     <i class="fab fa-twitter-square"></i>&nbsp; <?= $twetter; ?>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-4">Linkedin</label>
+                                <label for="staticEmail" class="col-sm-4">LinkedIn</label>
                                 <div class="col-sm-8">
                                     <i class="fab fa-linkedin"></i>&nbsp; <?= $linkedIn; ?>
                                 </div>
