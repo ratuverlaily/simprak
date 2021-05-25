@@ -83,7 +83,7 @@
             <br />
 
             <div class="d-flex justify-content-between bd-highlight mb-3">
-                <div class="p-2 bd-highlight"><button type="button" class="btn btn-outline-info" onclick="location.href='<?= base_url('praktikum/siswa'); ?>?>'"><i class="fas fa-backward"></i> Kembali</button></div>
+                <div class="p-2 bd-highlight"><button type="button" class="btn btn-outline-info" onclick="location.href='<?= base_url('praktikum/siswa'); ?>'"><i class="fas fa-backward"></i> Kembali</button></div>
                 <?php if ($waktu_batas >= $wakru_sekarang) { ?>
                     <div class="p-2 bd-highlight"><button type="button" class="btn btn-outline-info" onclick="location.href='<?= base_url('praktikum/sentkode'); ?>/<?php echo $praktikum['id_praktikum'] ?>'"><i class="fas fa-forward"></i> Selanjutnya</button></div>
                 <?php } else { ?>
