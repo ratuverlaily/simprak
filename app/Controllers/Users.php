@@ -530,7 +530,6 @@ class Users extends BaseController
         $datauserkelas = array(
             'id_user' => session()->get('id'),
             'kode_kelas' => $randomString,
-            'id_sekolah' => '',
         );
 
         $db->table('tbl_kelas_user')->insert($datauserkelas);
