@@ -89,7 +89,7 @@
                         <div class="form-group">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Password Baru</span>
                                 </div>
                                 <input type="password" class="form-control" name="password" placeholder="" value="" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                             </div>
@@ -98,7 +98,7 @@
                         <div class="form-group">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Ulangi Password</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Ulangi Password Baru</span>
                                 </div>
                                 <input type="password" class="form-control" name="repassword" placeholder="" value="" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                             </div>
