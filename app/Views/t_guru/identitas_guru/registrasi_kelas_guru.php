@@ -83,6 +83,7 @@
                             <td><b><?php echo $kelas->kode; ?></b></td>
                             <td>
                                 <button class="btn btn-primary" onclick="edit_kelas(<?php echo $kelas->id_kelas; ?>)"><i class="fas fa-edit"></i></button>
+                                <a class="btn btn-primary" href="<?= base_url(); ?>/identitas/kelas/hapus/<?php echo $kelas->id_kelas; ?>"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php } ?>
