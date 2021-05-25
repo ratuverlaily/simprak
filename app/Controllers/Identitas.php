@@ -460,6 +460,14 @@ class Identitas extends BaseController
         echo json_encode(array("status" => 1));
     }
 
+    public function deleteKelas($id)
+    {
+        $where = array(
+            "id_kelas" => $id
+        );
+        $this->Musers->deleteKelasGuru($where);
+        return redirect()->to(base_url('identitas/kelas'));
+    }
 
     public function editViewSekolahguru()
     {
