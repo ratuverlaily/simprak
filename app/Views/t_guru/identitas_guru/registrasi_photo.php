@@ -61,16 +61,21 @@
                 </div>
             <?php endif; ?>
 
-            <h6 align="center"><u><b>PHOTO</b></u></h6>
+            <div class="card w-50 mx-auto">
+                <div class="card-body">
+                    <h6 align="center"><u><b>PHOTO</b></u></h6>
 
-            <p align="center"><small>Upload Photo Profil Anda</small><br /><small>Ukuran ( 3 x 4 )</small></p>
-            <div id="filepreview" class="displaynone">
-                <img src="<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>" class="rounded mx-auto d-block" width="300px" height="300px"><br><br>
+                    <p align="center"><small>Upload Photo Profil Anda</small><br /><small>Ukuran ( 3 x 4 )</small></p>
+                    <div id="filepreview" class="displaynone">
+                        <img src="<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>" class="rounded mx-auto d-block" width="300px" height="300px"><br><br>
+                    </div>
+                    <div class="d-flex justify-content-center bd-highlight">
+                        <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="add_photo()"><i class="fas fa-plus-square"></i> Upload Photo</button></div>
+                        <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="location.href='<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>'"><i class="fa fa-eye" aria-hidden="true"></i> Lihat Detail</button></div>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-center bd-highlight">
-                <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="add_photo()"><i class="fas fa-plus-square"></i> Uploa Photo</button></div>
-                <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="location.href='<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>'"><i class="fa fa-eye" aria-hidden="true"></i> Lihat Detail</button></div>
-            </div>
+
             <div class="d-flex justify-content-between bd-highlight">
                 <div class="p-5 bd-highlight"></div>
                 <?php if ($photo == 1) { ?>
@@ -79,6 +84,7 @@
                     <div class="p-5 bd-highlight"><button type="button" class="btn btn-outline-info" onclick="location.href='#'"></i> Selanjutnya</button></div>
                 <?php } ?>
             </div>
+
         </div>
     </div>
 </div>
