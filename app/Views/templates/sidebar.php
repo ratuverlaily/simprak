@@ -10,7 +10,7 @@
     </a>
 
     <hr class="sidebar-divider">
-    <div class="sidebar-brand-text mx-3 text-white text-center"><small>APLIKASI SIMULASI <br /> PRAKTIKUM DAN GAMES</small></div>
+    <div class="sidebar-brand-text mx-3 text-white text-center"><small>APLIKASI SIMULASI <br /> PRAKTIKUM GAMES</small></div>
 
     <!-- Divider Guru-->
     <hr class="sidebar-divider my-0">
@@ -108,7 +108,7 @@
         <!-- Nav Item - Nilai Praktikum-->
         <li class="nav-item <?php if ($statusUri == "praktikum") {
                                 $statusnilai = $request->uri->getSegment(3);
-                                if ($statusnilai == "nilai") {
+                                if ($statusnilai == "nilai" || $statusnilai == "detail") {
                                     echo 'active';
                                 }
                             } ?>">
