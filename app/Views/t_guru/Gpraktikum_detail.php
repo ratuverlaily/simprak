@@ -92,8 +92,7 @@
                     Modul Praktikum
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-primary"><i class="fas fa-download"></i>&nbsp;</button>
-                    <button type="button" class="btn btn-primary"><i class="fas fa-eye"></i>&nbsp;</button>
+                    <a class="btn btn-primary" href="<?= base_url(); ?>/praktikum/modul/unduh/<?php echo $hsl['id_praktikum']; ?>"><i class="fas fa-download"></i></a>
                 </div>
                 <div class="col-2">
                     Aplikasi Praktikum <br />
