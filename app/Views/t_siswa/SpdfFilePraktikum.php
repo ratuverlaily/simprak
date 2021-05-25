@@ -10,7 +10,12 @@
 
     <div class="card my-1 shadow-lg mx-auto">
         <div class="card-body">
-            <button type="button" class="btn btn-outline-info" onclick="location.href='<?= base_url(''); ?>/praktikum/detail/<?php echo $getdata->id_praktikum; ?>'"><i class="fas fa-backward"></i> Kembali</button>
+            <?php if (session()->get('level') == 1) { ?>
+                <button type="button" class="btn btn-outline-info" onclick="location.href='<?= base_url(''); ?>/praktikum/detail/<?php echo $getdata->id_praktikum; ?>'"><i class="fas fa-backward"></i> Kembali</button>
+            <?php }
+            if (session()->get('level') == 2) { ?>
+                <button type="button" class="btn btn-outline-info" onclick="location.href='<?= base_url(''); ?>/praktikum/guru/detail/<?php echo $getdata->id_praktikum; ?>'"><i class="fas fa-backward"></i> Kembali</button>
+            <?php } ?>
             <br /><br />
             <div id="viewpdf" style="height: 700px;"></div>
         </div>
