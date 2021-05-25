@@ -25,8 +25,9 @@ class Apilogin extends ResourceController
 
     public function create()
     {
-        $data = $this->request->getPost();
-        $validate = $this->validation->run($data, 'login_user');
+        //$data = $this->request->getPost();
+        //$validate = $this->validation->run($data, 'login_user');
+
         $errors = $this->validation->getErrors();
 
         if ($errors) {
