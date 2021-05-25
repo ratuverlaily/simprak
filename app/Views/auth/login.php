@@ -20,7 +20,7 @@
                                         <b>
                                             <h5>LOGIN</h5>
                                         </b>
-                                        <small>E-SIMPRAG (SIMULASI PRAKTIKUM DAN GAMES)</small><br />
+                                        <small>E-SIMPRAG (SIMULASI PRAKTIKUM GAMES)</small><br />
                                         <small>KOPETENSI BIDANG LISTRIK DASAR SMK</small>
                                     </p>
                                 </div>
@@ -82,7 +82,6 @@
                                 <hr>
                                 <div class="text-center">
                                     <p><a href="<?= base_url('auth/register') ?>" class="small">Buat akun baru ?</a></p>
-                                    <p><a href="<?= base_url('auth/forgot') ?>" class="small">Lupa password ?..</a></p>
                                 </div>
                             </div>
                         </div>
