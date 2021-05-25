@@ -60,7 +60,7 @@ class Apigames extends ResourceController
                     'post_waktu_pengerjaan' => $post_waktu_pengerjaan,
                     'expe_status' => $expe_status,
                     'expe_waktu_pengerjaan' => $expe_waktu_pengerjaan,
-                    'update_date' => date('d M Y H:i:s'),
+                    'update_date' => date("Y-m-d H:i:s"),
                 );
 
                 $where = array(
@@ -80,7 +80,7 @@ class Apigames extends ResourceController
                     'post_waktu_pengerjaan' => $post_waktu_pengerjaan,
                     'expe_status' => $expe_status,
                     'expe_waktu_pengerjaan' => $expe_waktu_pengerjaan,
-                    'update_date' => date('d M Y H:i:s'),
+                    'create_date' =>  date("Y-m-d H:i:s"),
                 );
                 $db->table('praktikum_getvalue')->insert($data);
             }
