@@ -55,7 +55,8 @@
                 </ul>
             <?php } ?>
             <br />
-            <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="add_file()"><i class="fas fa-plus-square"></i> Daftar Kelas</button></div>
+            <a class="btn btn-primary" href="<?php echo base_url() ?>/modul/myfile/form"><i class="fas fa-plus-square"></i> Input File</a>
+            <br />
             <br />
             <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
