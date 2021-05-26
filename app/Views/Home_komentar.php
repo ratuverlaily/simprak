@@ -65,14 +65,6 @@
                             echo str_replace($a, $b, $posting->posting);
 
                             ?><br />
-                            <?php echo $posting->link_web; ?>
-                            <?php if (!empty($posting->link_web)) { ?>
-                                <p><a href="<?php echo $posting->link_web; ?>">Link Web Tutorial Praktikum</a></p>
-                            <?php } ?>
-
-                            <?php if (!empty($posting->link_youtube)) { ?>
-                                <p><a href="<?php echo $posting->link_youtube; ?>">Link Youtube Tutorial Praktikum</a></p>
-                            <?php } ?>
                         </div>
                         <div class="col-sm bg-light">
                             <?php if (session()->get('username') == $posting->username && empty($komentar)) { ?>
@@ -88,12 +80,21 @@
                                 </div>
                             <?php } ?>
                         </div>
-                        <div class="col-sm-12 bg-light">
-                            <?php if (!empty($posting->file)) { ?>
-                                <div class="d-flex justify-content-left bd-highlight">
-                                    <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="location.href='<?= base_url() ?>/users/komentar/pdf/<?= $posting->id_posting ?>'"><i class="fas fa-cloud-download-alt"></i> Lihat</button></div>
-                                </div>
+                        <div class="col-sm-12 bg-light p-2">
+                            <?php if (!empty($posting->link_web)) { ?>
+                                <a href="<?php echo $posting->link_web ?>" target="_blank"><i class="fab fa-google fa-1x">&nbsp;&nbsp;Sumber Web</i></a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
                             <?php } ?>
+
+                            <?php if (!empty($posting->link_youtube)) { ?>
+                                <a href="<?php echo $posting->link_youtube ?>" target="_blank"><i class="fab fa-youtube fa-1x">&nbsp;&nbsp;Sumber Youtube</i></a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            <?php } ?>
+
+                            <?php if (!empty($posting->file)) { ?>
+                                <a href="<?php echo base_url() ?>/users/komentar/pdf/<?php echo $posting->id_posting ?>" target="_blank"><i class="fas fa-cloud-download-alt">&nbsp;&nbsp;Dokumen/File</i></a>
+                            <?php } ?>
+
                             <br />
                         </div>
                     </div>
