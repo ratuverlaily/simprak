@@ -62,7 +62,7 @@
 
             <div class="card w-50 mx-auto">
                 <div class="card-body">
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-primary" role="alert">
                         <h8 class="card-title"><b>KELAS YANG DI AMBIL</b></h8>
                     </div>
 
