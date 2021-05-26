@@ -99,7 +99,7 @@
                     ( Jika Belum Download )
                 </div>
                 <div class="col-4">
-                    <a href="downloads/setup.exe"><i class="fas fa-download"></i> SIMPRAG.exe</a>
+                    <a href="<?php echo base_url() ?>/games/<?php echo $hsl['link_games'] ?>"><i class="fas fa-download"></i><?php echo $hsl['link_games'] ?></a>
                 </div>
             </div>
         </div><br />
