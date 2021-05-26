@@ -139,7 +139,6 @@
         var link_youtube = $('#link_youtube').val();
 
         var files = $('#file')[0].files;
-        //if (files.length > 0) {
         var fd = new FormData();
         // Append data 
         fd.append('file', files[0]);
@@ -220,17 +219,19 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Link Web</span>
                             </div>
-                            <input type="text" class="form-control" name="link_web" id="link_web" placeholder="Input Link Jika Ada" value="" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                            <input name="link_web" class="form-control" id="link_web" id="ex3" type="text" placeholder="Input Link Jika Ada !">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Link Youtube</span>
                             </div>
-                            <input type="text" class="form-control" name="link_youtube" id="link_youtube" placeholder="Input Link Jika Ada" value="" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                            <input name="link_youtube" class="form-control" id="link_youtube" id="ex3" type="text" placeholder="Input Link Jika Ada !">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="file">Upload File:</label><br />
                         <input type="file" id="file" name="file" />
