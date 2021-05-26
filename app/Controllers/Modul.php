@@ -77,11 +77,16 @@ class modul extends BaseController
         return view('t_guru/Gmyfile', $data);
     }
 
-    public function simpanFileGuru()
+    public function viewFormMyFile()
     {
+        return view('t_guru/Gmyfile_form');
+    }
+
+    public function saveFileGuru()
+    {
+        helper(['form', 'url']);
+
         $data = array();
-        //membaca token baru
-        $data['token'] = csrf_hash();
 
         $validated = $this->validate([
             'file' => [
@@ -120,12 +125,15 @@ class modul extends BaseController
 
                     $this->Musers->addposting($data);
                     session()->setFlashdata('success', 'Posting berhasil di post !');
-                    echo json_encode(array("status" => 1));
+                    return redirect()->to(base_url('modul/myfile/guru'));
                 } else {
                     session()->setFlashdata('error', 'Mohon Maaf File Anda Tidak Berhasil Di Simpan !');
-                    echo json_encode(array("status" => 1));
+                    return redirect()->to(base_url('modul/myfile/guru'));
                 }
             }
+        } else {
+            session()->setFlashdata('error', 'Mohon Maaf File Tidak Sesuai !');
+            return redirect()->to(base_url('modul/myfile/guru'));
         }
     }
 }
