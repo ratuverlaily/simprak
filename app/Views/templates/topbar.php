@@ -117,6 +117,7 @@
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
+
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="d-flex bd-highlight">
                     <div class="flex-fill bd-highlight">
@@ -153,6 +154,7 @@
                     Logout
                 </a>
             </div>
+
         </li>
     </ul>
 </nav>
