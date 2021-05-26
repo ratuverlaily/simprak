@@ -32,6 +32,7 @@ $routes->resource('Apigames');
 
 //, ['filter' => 'Authfilter']
 $routes->get('home', 'Home::index');
+$routes->get('home/form', 'Home::viewFormHome');
 $routes->get('auth/login', 'Auth::index');
 $routes->add('logout', 'Auth::logout');
 $routes->add('auth/cek', 'Auth::ceklogin');
@@ -92,11 +93,12 @@ $routes->group('modul', function ($routes) {
 	$routes->get('guru', 'Modul::getmodulpraktikumguru');
 	$routes->get('file/guru', 'Modul::getfilemodulguru');
 	$routes->get('myfile/guru', 'Modul::getmyfileguru');
-	$routes->post('myfile/simpan', 'Modul::simpanFileGuru');
+	$routes->post('myfile/save', 'Modul::saveFileGuru');
 	$routes->get('file/siswa', 'Modul::getfilemodulguru');
 	$routes->get('myfile/siswa', 'Modul::getmyfileguru');
 	$routes->get('praktikum/unduh/(:any)', 'Modul::viewModulpdf/$1');
 	$routes->get('file/unduh/(:any)', 'Modul::viewfilepdf/$1');
+	$routes->get('myfile/form', 'Modul::viewFormMyFile');
 	$routes->get('myfile/hapus/(:any)', 'Modul::hapusfilepdf/$1');
 	$routes->get('myfile/unduh/(:any)', 'Modul::viewmyfilepdf/$1');
 });
@@ -120,6 +122,7 @@ $routes->group('identitas', function ($routes) {
 	$routes->post('identitas/add', 'Identitas::identitasupdate');
 	$routes->get('kelas', 'Identitas::viewkelas');
 	$routes->post('kelas/add', 'Identitas::addkelas');
+	$routes->post('kelas/guru/add', 'Identitas::addkelasGuru');
 	$routes->get('kelas/guru/edit/(:num)', 'Identitas::editViewkelasguru/$1');
 	$routes->get('kelas/hapus/(:num)', 'Identitas::deleteKelas/$1');
 	$routes->post('simpankelas', 'Identitas::editkelasguru');
