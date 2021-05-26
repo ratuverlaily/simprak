@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="d-flex">
                 <div class="mr-auto p-2">
-                    <button class="btn btn-primary" onclick="add_posting()"><i class="fas fa-plus-square"></i> Posting Baru</button>
+                    <a class="btn btn-primary" href="<?php echo base_url() ?>/home/form"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;Posting</a>
                 </div>
                 <div class="ml-auto p-2">
                     <?= $pager->links('posting', 'posting_pagination'); ?>
