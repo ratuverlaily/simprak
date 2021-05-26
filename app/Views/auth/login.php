@@ -20,8 +20,8 @@
                                         <b>
                                             <h5>LOGIN</h5>
                                         </b>
-                                        <small>E-SIMPRAG (SIMULASI PRAKTIKUM GAMES)</small><br />
-                                        <small>KOPETENSI BIDANG LISTRIK DASAR SMK</small>
+                                        <small>E-SIMPRAG (SIMULASI PRAKTIKUM GAME)</small><br />
+                                        <small>KOMPETENSI BIDANG LISTRIK DASAR SMK</small>
                                     </p>
                                 </div>
                                 <!-- Success validasi -->
