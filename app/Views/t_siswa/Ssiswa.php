@@ -19,8 +19,6 @@
                         <th>username</th>
                         <th>Jenis Kelamin</th>
                         <th>No Telpon</th>
-                        <th style="width:30px;">Action
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +29,6 @@
                             <td><?php echo $user->username; ?></td>
                             <td><?php echo $user->jenis_kelamin; ?></td>
                             <td><?php echo $user->no_telpon; ?></td>
-                            <td align="center"><button class="btn btn-primary" onclick="edit_modul(<?php echo $user->id_user; ?>)"><i class="fas fa-envelope"></i></button></td>
                         </tr>
                     <?php } ?>
 
@@ -43,8 +40,6 @@
                         <th>username</th>
                         <th>Jenis Kelamin</th>
                         <th>No Telpon</th>
-                        <th style="width:100px;">Action
-                        </th>
                     </tr>
                 </tfoot>
             </table>
