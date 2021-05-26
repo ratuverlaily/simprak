@@ -34,7 +34,7 @@
                             <th>Keterangan</th>
                             <th>Format</th>
                             <th>Tanggal</th>
-                            <th style="width:100px;">Action
+                            <th style="width:100px;">Aksi
                                 </p>
                             </th>
                         </tr>
@@ -63,7 +63,7 @@
                             <th>Keterangan</th>
                             <th>Format</th>
                             <th>Tanggal</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </tfoot>
                 </table>
