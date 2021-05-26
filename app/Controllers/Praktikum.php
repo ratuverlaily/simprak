@@ -313,6 +313,18 @@ class Praktikum extends BaseController
 
             $db->table('praktikum_dikelas')->update($getDataKelasPrak, array('id_praktikum' => $id_praktikum, 'kode_kelas' => session()->get('kode_kelas')));
 
+            $getPosting = array(
+                'judul' => $judul,
+                'update_date' => $tanggal_posting,
+            );
+
+            $wherePosting = array(
+                'id_praktikum' => $id_praktikum,
+                'kode_kelas' => session()->get('kode_kelas'),
+            );
+
+            $db->table('posting_status')->update($getPosting,  $wherePosting);
+
             $db->transComplete();
 
             if ($db->transStatus() == FALSE) {
