@@ -149,14 +149,14 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Games Experiment<span class="float-right"><?php echo  $status_expe ?>%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="background-color:<?php echo $warna_expe ?>; width: <?php echo $status_expe ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" max="20%"></div>
-                                    </div>
-
                                     <h4 class="small font-weight-bold">Games Pre Test<span class="float-right"><?php echo $status_pre ?>%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar" role="progressbar" style="background-color:<?php echo $warna_pre ?>; width: <?php echo $status_pre ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" max="20%"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">Games Experiment<span class="float-right"><?php echo  $status_expe ?>%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="background-color:<?php echo $warna_expe ?>; width: <?php echo $status_expe ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" max="20%"></div>
                                     </div>
 
                                     <h4 class="small font-weight-bold">Games Pos Test<span class="float-right"><?php echo $status_post ?>%</span></h4>
