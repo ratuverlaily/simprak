@@ -17,8 +17,8 @@
                     <div class="p-5">
                         <div class="text-center">
                             <p class="text-gray-900 mb-4"><b>REGISTRASI</b><br />
-                                <small>E-SIMPRAG (SIMULASI PRAKTIKUM GAMES)</small><br />
-                                <small>KOPETENSI BIDANG LISTRIK DASAR SMK</small>
+                                <small>E-SIMPRAG (SIMULASI PRAKTIKUM GAME)</small><br />
+                                <small>KOMPETENSI BIDANG LISTRIK DASAR SMK</small>
                             </p>
                         </div>
 
