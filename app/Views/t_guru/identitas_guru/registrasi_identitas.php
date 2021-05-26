@@ -180,7 +180,7 @@
                 $('[name="tanggal"]').val(data.tanggal);
 
                 $('#modal_identitas_form').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('Edit modul'); // Set title to Bootstrap modal title*/
+                $('.modal-title').text('Edit Data Diri'); // Set title to Bootstrap modal title*/
 
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -291,11 +291,11 @@
                                 <br />
                                 <div class="row">
                                     <div class="col-sm-6 dates">
-                                        <label>Twiter</label>
+                                        <label>Twitter</label>
                                         <input name="tweter" type="text" class="form-control" id="tweter" placeholder="@nama_akun">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label>Linklind</label>
+                                        <label>LinkedIn</label>
                                         <input name="linkedIn" type="text" class="form-control" id="linkedIn" placeholder="@nama_akun" />
                                     </div>
                                 </div>
