@@ -72,7 +72,7 @@ class Auth extends BaseController
                 return redirect()->to(base_url('home'));
             } else {
                 //jika datanya tidak cocok 
-                session()->setFlashdata('pesan', 'Login Gagal, Username Dan Passwrod Tidak Cocok !');
+                session()->setFlashdata('pesan', 'Login Gagal, Username Dan Password Tidak Cocok !');
                 return redirect()->to(base_url('auth/login'));
             }
         } else {
@@ -142,10 +142,5 @@ class Auth extends BaseController
             session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
             return redirect()->to(base_url('auth/register'));
         }
-    }
-
-    public function coba()
-    {
-        echo "kasjdkasjdk";
     }
 }
