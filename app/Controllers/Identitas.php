@@ -84,7 +84,6 @@ class Identitas extends BaseController
     {
         $data = array();
         //membaca token baru
-        $data['token'] = csrf_hash();
 
         $validated = $this->validate([
             'file' => [
@@ -131,22 +130,25 @@ class Identitas extends BaseController
                     if ($db->transStatus() == FALSE) {
                         # Something went wrong.
                         $db->transRollback();
-                        session()->setFlashdata('error', 'Mohon Maaf Data Photo Diri Anda Tidak Berhasil Di Simpan !');
-                        echo json_encode(array("status" => 1));
+                        session()->setFlashdata('error', 'Mohon Maaf Photo Anda Tidak Berhasil Di Simpan !');
+                        return redirect()->to(base_url('identitas/photo'));
                     } else {
                         # Everything is Perfect. 
                         # Committing data to the database.
                         $db->transCommit();
                         session()->set(array('user_image' => $newName));
-                        session()->setFlashdata('success', 'Selamat Data Photo Diri Anda Berhasil Di Simpan !');
-                        echo json_encode(array("status" => 1));
+                        session()->setFlashdata('success', 'Selamat Photo Anda Berhasil Di Simpan !');
+                        return redirect()->to(base_url('identitas/photo'));
                     }
                     $db->close();
                 } else {
                     session()->setFlashdata('error', 'Mohon Maaf Photo Anda Tidak Berhasil Di Simpan !');
-                    echo json_encode(array("status" => 1));
+                    return redirect()->to(base_url('identitas/photo'));
                 }
             }
+        } else {
+            session()->setFlashdata('error', 'Mohon Maaf File Anda Kosong !');
+            return redirect()->to(base_url('identitas/photo'));
         }
     }
 
@@ -306,14 +308,12 @@ class Identitas extends BaseController
             if ($getuserkelas) {
                 $arrkelas = array(
                     'kode_kelas' => $getviewsekolah->kode_kelas,
-                    'id_sekolah' => $getviewsekolah->id_sekolah,
                 );
                 $db->table('tbl_kelas_user')->update($arrkelas, array('id_user' => session()->get('id')));
             } else {
                 $arrkelas = array(
                     'id_user' => session()->get('id'),
                     'kode_kelas' => $getviewsekolah->kode_kelas,
-                    'id_sekolah' => $getviewsekolah->id_sekolah,
                 );
                 $db->table('tbl_kelas_user')->insert($arrkelas);
             }
@@ -323,13 +323,13 @@ class Identitas extends BaseController
             if ($db->transStatus() === FALSE) {
                 # Something went wrong.
                 $db->transRollback();
-                session()->setFlashdata('error', 'Mohon Maaf Data Photo Diri Anda Tidak Berhasil Di Simpan !');
+                session()->setFlashdata('error', 'Mohon Maaf Kelas Belum Berhasil Di Simpan !');
                 echo json_encode(array("status" => 1));
             } else {
                 # Everything is Perfect. 
                 # Committing data to the database.
                 $db->transCommit();
-                session()->setFlashdata('success', 'Selamat Data Photo Diri Anda Berhasil Di Simpan !');
+                session()->setFlashdata('success', 'Selamat Kelas Anda Berhasil Di Simpan !');
                 echo json_encode(array("status" => 1));
             }
             $db->close();
@@ -407,7 +407,6 @@ class Identitas extends BaseController
         $datauserkelas = array(
             'id_user' => session()->get('id'),
             'kode_kelas' => $randomString,
-            'id_sekolah' => '',
         );
 
         $db->table('tbl_kelas_user')->insert($datauserkelas);
@@ -426,13 +425,13 @@ class Identitas extends BaseController
         if ($db->transStatus() === FALSE) {
             # Something went wrong.
             $db->transRollback();
-            session()->setFlashdata('error', 'Mohon Maaf Data Photo Diri Anda Tidak Berhasil Di Simpan !');
+            session()->setFlashdata('error', 'Mohon Maaf Data Kelas Belum Berhasil Di Simpan !');
             echo json_encode(array("status" => 1));
         } else {
             # Everything is Perfect. 
             # Committing data to the database.
             $db->transCommit();
-            session()->setFlashdata('success', 'Selamat Data Photo Diri Anda Berhasil Di Simpan !');
+            session()->setFlashdata('success', 'Selamat Data Kelas Berhasil Di Simpan !');
             echo json_encode(array("status" => 1));
         }
         $db->close();
@@ -456,7 +455,7 @@ class Identitas extends BaseController
 
         $data = $this->Musers->updatekelasguru($datakelas, array('id_kelas' => $id_kelas));
 
-        session()->setFlashdata('success', 'Selamat Data Photo Diri Anda Berhasil Di Simpan !');
+        session()->setFlashdata('success', 'Selamat Data Kelas Berhasil Di Simpan !');
         echo json_encode(array("status" => 1));
     }
 
@@ -532,12 +531,7 @@ class Identitas extends BaseController
         );
 
         $data = $this->Musers->updateDataSekolahGuru($datausersekolah, array('id_sekolah' => $id_sekolah));
-        if ($data) {
-            session()->setFlashdata('success', 'Selamat Data Photo Diri Anda Berhasil Di Simpan !');
-            echo json_encode(array("status" => 1));
-        } else {
-            session()->setFlashdata('error', 'Mohon Maaf Data Photo Diri Anda Tidak Berhasil Di Simpan !');
-            echo json_encode(array("status" => 1));
-        }
+        session()->setFlashdata('success', 'Selamat Data Photo Diri Anda Berhasil Di Simpan !');
+        echo json_encode(array("status" => 1));
     }
 }
