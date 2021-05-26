@@ -50,4 +50,9 @@ class Home extends BaseController
             }
         }
     }
+
+    public function viewFormHome()
+    {
+        return view('Home_form');
+    }
 }
