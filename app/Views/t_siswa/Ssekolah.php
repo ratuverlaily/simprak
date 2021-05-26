@@ -11,9 +11,6 @@
 
             <div class="card w-50 mx-auto">
                 <div class="card-body">
-                    <div class="alert alert-danger text-center" role="alert">
-                        <h8 class="card-title"><b>IDENTITAS SEKOLAH</b></h8>
-                    </div>
                     <div class="card-body">
                         <div class="container">
                             <div class="row">
