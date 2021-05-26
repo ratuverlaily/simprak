@@ -60,21 +60,56 @@
                 </div>
             <?php endif; ?>
 
-            <div class="card w-50 mx-auto">
-                <div class="card-body">
-                    <div class="alert alert-danger text-center" role="alert">
-                        <h6 align="center"><b>PHOTO</b></h6>
-                    </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card o-hidden">
+                        <div class="card-body text-secondary">
+                            <div class="alert alert-primary" role="alert">
+                                <h6 class="card-title text-center"><b>UNGGAH PHOTO</b></h6>
+                            </div>
+                            <br />
+                            <form method="post" action="<?php echo base_url() ?>/identitas/photo/add" enctype="multipart/form-data">
+                                <input type="hidden" class="txt_csrfname" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
 
-                    <p align="center"><small>Upload Photo Profil Anda</small><br /><small>Ukuran ( 3 x 4 )</small></p>
-                    <div id="filepreview" class="displaynone">
-                        <img src="<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>" class="rounded mx-auto d-block" width="300px" height="300px"><br><br>
-                    </div>
-                    <div class="d-flex justify-content-center bd-highlight">
-                        <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="add_photo()"><i class="fas fa-plus-square"></i> Upload Photo</button></div>
-                        <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="location.href='<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>'"><i class="fa fa-eye" aria-hidden="true"></i> Lihat Detail</button></div>
+                                <div class="form-group">
+                                    <label for="file"><b>Upload File:</b></label><br />
+                                    <input type="file" id="file" name="file" />
+                                    <!-- Error -->
+                                    <div class='alert alert-danger mt-2 d-none' id="err_file">Maaf File Anda Tidak Bisa Di Upload !</div>
+                                </div>
+                                <br />
+                                <div class="d-flex justify-content-center bd-highlight">
+                                    <!-- <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="add_photo()"><i class="fas fa-plus-square"></i> Upload Photo</button></div> -->
+                                    <div class="p-1 bd-highlight">
+                                        <button href="submit" class="btn btn-primary btn-user btn-block">
+                                            <i class="fas fa-save"></i> &nbsp;&nbsp; Simpan
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="card o-hidden">
+                        <div class="card-body">
+                            <div class="alert alert-primary" role="alert">
+                                <h6 class="card-title text-center"><b>HASIL PHOTO</b></h6>
+                            </div>
+
+                            <!-- <p align="center"><small>Upload Photo Profil Anda</small><br /><small>Ukuran ( 3 x 4 )</small></p> -->
+                            <div id="filepreview" class="displaynone">
+                                <img src="<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>" class="rounded mx-auto d-block" width="300px" height="300px"><br><br>
+                            </div>
+                            <div class="d-flex justify-content-center bd-highlight">
+                                <!-- <div class="p-2 bd-highlight"><button class="btn btn-primary" onclick="add_photo()"><i class="fas fa-plus-square"></i> Upload Photo</button></div> -->
+                                <div class="p-1 bd-highlight"><button class="btn btn-primary" onclick="location.href='<?= base_url() ?>/uploads/<?= session()->get('user_image') ?>'"><i class="fa fa-eye" aria-hidden="true"></i> Lihat Detail</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="d-flex justify-content-between bd-highlight">
