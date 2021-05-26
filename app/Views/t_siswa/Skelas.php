@@ -11,10 +11,7 @@
 
             <div class="card w-50 mx-auto">
                 <div class="card-body">
-                    <div class="alert alert-danger" role="alert">
-                        <h8 class="card-title"><b>KELAS YANG DI AMBIL</b></h8>
-                    </div>
-
+                    <br />
                     <div class="row">
                         <div class="col-sm-4">Kode Kelas</div>
                         <div class="col-sm-8">:&nbsp;&nbsp;<?php echo $kode; ?></div>
