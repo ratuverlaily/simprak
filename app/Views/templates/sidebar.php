@@ -10,7 +10,7 @@
     </a>
 
     <hr class="sidebar-divider">
-    <div class="sidebar-brand-text mx-3 text-white text-center"><small>APLIKASI SIMULASI <br /> PRAKTIKUM GAMES</small></div>
+    <div class="sidebar-brand-text mx-3 text-white text-center"><small>APLIKASI SIMULASI <br /> PRAKTIKUM GAME</small></div>
 
     <!-- Divider Guru-->
     <hr class="sidebar-divider my-0">
