@@ -61,7 +61,7 @@
 
             <div class="card w-50 mx-auto">
                 <div class="card-body">
-                    <div class="alert alert-danger text-center" role="alert">
+                    <div class="alert alert-primary text-center" role="alert">
                         <h8 class="card-title"><b>UBAH PASSWORD</b></h8>
                     </div>
                     <form method="post" action="<?php echo base_url() ?>/identitas/password/update" id="form" enctype="multipart/form-data">
