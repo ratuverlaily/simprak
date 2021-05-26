@@ -32,7 +32,7 @@ class Mpraktikum extends Model
     public function getdetailpraktikum($id_praktikum)
     {
         $kode_kelas = session()->get('kode_kelas');
-        $query = $this->db->query("SELECT * FROM praktikum a LEFT JOIN `praktikum_dikelas` b ON a.id_praktikum=b.id_praktikum where b.kode_kelas='" . $kode_kelas . "' and b.id_praktikum =" . $id_praktikum);
+        $query = $this->db->query("SELECT * FROM praktikum a LEFT JOIN `praktikum_dikelas` b ON a.id_praktikum=b.id_praktikum LEFT JOIN praktikum_games c ON a.id_games = c.id_games where b.kode_kelas='" . $kode_kelas . "' and b.id_praktikum =" . $id_praktikum);
         return $query->getRow();
     }
 
