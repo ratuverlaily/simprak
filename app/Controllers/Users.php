@@ -77,10 +77,10 @@ class Users extends BaseController
 
                 $this->Musers->addposting($data);
                 session()->setFlashdata('success', 'Posting berhasil di post !');
-                echo json_encode(array("status" => 1));
+                return redirect()->to(base_url('home'));
             } else {
                 session()->setFlashdata('error', 'Mohon Maaf File Anda Tidak Sesuai !');
-                echo json_encode(array("status" => 1));
+                return redirect()->to(base_url('home'));
             }
         } else {
             $data = array(
@@ -97,7 +97,7 @@ class Users extends BaseController
 
             $this->Musers->addposting($data);
             session()->setFlashdata('success', 'Posting berhasil di post !');
-            echo json_encode(array("status" => 1));
+            return redirect()->to(base_url('home'));
         }
     }
 
@@ -181,7 +181,7 @@ class Users extends BaseController
     {
         $data = array();
         //membaca token baru
-        $data['token'] = csrf_hash();
+        //$data['token'] = csrf_hash();
 
         $validated = $this->validate([
             'file' => [
@@ -241,21 +241,24 @@ class Users extends BaseController
                         # Something went wrong.
                         $db->transRollback();
                         session()->setFlashdata('error', 'Mohon Maaf Data Photo Diri Anda Tidak Berhasil Di Simpan !');
-                        echo json_encode(array("status" => 1));
+                        return redirect()->to(base_url('users/photo'));
                     } else {
                         # Everything is Perfect. 
                         # Committing data to the database.
                         $db->transCommit();
                         session()->set(array('user_image' => $newName));
                         session()->setFlashdata('success', 'Selamat Data Photo Diri Anda Berhasil Di Simpan !');
-                        echo json_encode(array("status" => 1));
+                        return redirect()->to(base_url('users/photo'));
                     }
                     $db->close();
                 } else {
                     session()->setFlashdata('error', 'Mohon Maaf Photo Anda Tidak Berhasil Di Simpan !');
-                    echo json_encode(array("status" => 1));
+                    return redirect()->to(base_url('users/photo'));
                 }
             }
+        } else {
+            session()->setFlashdata('error', 'Mohon Maaf File Anda Kosong !');
+            return redirect()->to(base_url('users/photo'));
         }
     }
 
@@ -654,13 +657,8 @@ class Users extends BaseController
         );
 
         $data = $this->Musers->updateDataSekolahGuru($datausersekolah, array('id_sekolah' => $id_sekolah));
-        if ($data) {
-            session()->setFlashdata('success', 'Selamat Data Photo Diri Anda Berhasil Di Simpan !');
-            echo json_encode(array("status" => 1));
-        } else {
-            session()->setFlashdata('error', 'Mohon Maaf Data Photo Diri Anda Tidak Berhasil Di Simpan !');
-            echo json_encode(array("status" => 1));
-        }
+        session()->setFlashdata('success', 'Selamat Data Sekolah Berhasil Di Simpan !');
+        echo json_encode(array("status" => 1));
     }
 
     public function aktifasiKelas()
