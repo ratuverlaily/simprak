@@ -92,7 +92,6 @@
 <script type="text/javascript">
     function add_photo() {
         save_method = 'add';
-        $('#form')[0].reset(); // reset form on modals
         $('#modal_photo_form').modal('show'); // show bootstrap modal
         $('#viewPhoto').hide();
         //$('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title
