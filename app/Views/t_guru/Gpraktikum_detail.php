@@ -311,7 +311,7 @@
                 $("input[value='" + data.id_games + "']").attr('checked', true);
 
                 $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('Edit modul'); // Set title to Bootstrap modal title
+                $('.modal-title').text('Edit Praktikum'); // Set title to Bootstrap modal title
 
             },
             error: function(jqXHR, textStatus, errorThrown) {
