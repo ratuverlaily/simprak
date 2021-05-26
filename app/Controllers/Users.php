@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\Musers;
+use App\Models\Mmodul;
 
 class Users extends BaseController
 {
@@ -11,6 +12,7 @@ class Users extends BaseController
     {
         helper('form');
         $this->Musers = new Musers();
+        $this->Mmodul = new Mmodul();
     }
 
     public function index()
@@ -66,6 +68,8 @@ class Users extends BaseController
                     "judul" => $judul,
                     "posting" => $komentar,
                     "file" => $newName,
+                    "link_web" => $link_web,
+                    "link_youtube" => $link_youtube,
                     "status" => 'info',
                     "create_date" => date("Y-m-d h:i:s"),
                     "update_date" => date("Y-m-d h:i:s"),
